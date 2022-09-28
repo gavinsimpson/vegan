@@ -10,7 +10,7 @@
   analysis, which are based on the Euclidean distance but can be used,
   and are more useful, with other dissimilarity measures. The functions
   can also perform unconstrained principal coordinates analysis,
-  optionally using extended dissimilarities."><title>[Partial] Distance-based Redundancy Analysis — capscale • vegan</title><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="[Partial] Distance-based Redundancy Analysis — capscale"><meta property="og:description" content="Distance-based redundancy analysis (dbRDA) is an ordination method
+  optionally using extended dissimilarities."><title>[Partial] Distance-based Redundancy Analysis — capscale • vegan</title><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="[Partial] Distance-based Redundancy Analysis — capscale"><meta property="og:description" content="Distance-based redundancy analysis (dbRDA) is an ordination method
   similar to Redundancy Analysis (rda), but it allows
   non-Euclidean dissimilarity indices, such as Manhattan or
   Bray--Curtis distance. Despite this non-Euclidean feature, the analysis
@@ -32,7 +32,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">vegan</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.6-0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.6-3</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -87,12 +87,12 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">capscale</span><span class="op">(</span><span class="va">formula</span>, <span class="va">data</span>, distance <span class="op">=</span> <span class="st">"euclidean"</span>, sqrt.dist <span class="op">=</span> <span class="cn">FALSE</span>,
-    comm <span class="op">=</span> <span class="cn">NULL</span>, add <span class="op">=</span> <span class="cn">FALSE</span>,  dfun <span class="op">=</span> <span class="va">vegdist</span>, metaMDSdist <span class="op">=</span> <span class="cn">FALSE</span>,
-    na.action <span class="op">=</span> <span class="va">na.fail</span>, subset <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span>
-<span class="fu">dbrda</span><span class="op">(</span><span class="va">formula</span>, <span class="va">data</span>, distance <span class="op">=</span> <span class="st">"euclidean"</span>, sqrt.dist <span class="op">=</span> <span class="cn">FALSE</span>,
-    add <span class="op">=</span> <span class="cn">FALSE</span>, dfun <span class="op">=</span> <span class="va">vegdist</span>, metaMDSdist <span class="op">=</span> <span class="cn">FALSE</span>,
-    na.action <span class="op">=</span> <span class="va">na.fail</span>, subset <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">capscale</span><span class="op">(</span><span class="va">formula</span>, <span class="va">data</span>, distance <span class="op">=</span> <span class="st">"euclidean"</span>, sqrt.dist <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>    comm <span class="op">=</span> <span class="cn">NULL</span>, add <span class="op">=</span> <span class="cn">FALSE</span>,  dfun <span class="op">=</span> <span class="va">vegdist</span>, metaMDSdist <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>    na.action <span class="op">=</span> <span class="va">na.fail</span>, subset <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></span>
+<span><span class="fu">dbrda</span><span class="op">(</span><span class="va">formula</span>, <span class="va">data</span>, distance <span class="op">=</span> <span class="st">"euclidean"</span>, sqrt.dist <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>    add <span class="op">=</span> <span class="cn">FALSE</span>, dfun <span class="op">=</span> <span class="va">vegdist</span>, metaMDSdist <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>    na.action <span class="op">=</span> <span class="va">na.fail</span>, subset <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -113,17 +113,22 @@
     special term <code>Condition</code> that defines variables to be
     “partialled out” before constraints, just like in <code><a href="cca.html">rda</a></code>
     or <code><a href="cca.html">cca</a></code>. This allows the use of partial dbRDA.</p></dd>
-<dt>data</dt>
+
+  <dt>data</dt>
 <dd><p>Data frame containing the variables on the right hand side of
     the model formula.</p></dd>
-<dt>distance</dt>
+
+  <dt>distance</dt>
 <dd><p>The name of the dissimilarity (or distance) index if
     the LHS of the <code>formula</code> is a data frame instead of
     dissimilarity matrix.</p></dd>
-<dt>sqrt.dist</dt>
+
+  <dt>sqrt.dist</dt>
 <dd><p>Take square roots of dissimilarities. See section
     <code>Details</code> below.</p></dd>
-<dt>comm</dt>
+
+
+  <dt>comm</dt>
 <dd><p>Community data frame which will be used for finding
     species scores when the LHS of the <code>formula</code> was a
     dissimilarity matrix. This is not used if the LHS is a data
@@ -132,7 +137,9 @@
     only available in <code>capscale</code>: <code>dbrda</code> does not return
     species scores. Function <code><a href="sppscores.html">sppscores</a></code> can be used to add
     species scores if they are missing.</p></dd>
-<dt>add</dt>
+
+
+  <dt>add</dt>
 <dd><p>Add a constant to the non-diagonal dissimilarities such
      that all eigenvalues are non-negative in the underlying Principal
      Co-ordinates Analysis (see <code><a href="wcmdscale.html">wcmdscale</a></code> for
@@ -140,17 +147,20 @@
      recommended method of Legendre &amp; Anderson (1999: “method
      1”) and <code>"cailliez"</code> uses their “method 2”. The
      latter is the only one in <code><a href="https://rdrr.io/r/stats/cmdscale.html" class="external-link">cmdscale</a></code>.</p></dd>
-<dt>dfun</dt>
+
+  <dt>dfun</dt>
 <dd><p>Distance or dissimilarity function used. Any function
      returning standard <code>"dist"</code> and taking the index name as the
      first argument can be used.</p></dd>
-<dt>metaMDSdist</dt>
+
+   <dt>metaMDSdist</dt>
 <dd><p>Use <code><a href="metaMDS.html">metaMDSdist</a></code> similarly as in
      <code><a href="metaMDS.html">metaMDS</a></code>. This means automatic data transformation and
      using extended flexible shortest path dissimilarities (function
      <code><a href="stepacross.html">stepacross</a></code>) when there are many dissimilarities based on
      no shared species.</p></dd>
-<dt>na.action</dt>
+
+   <dt>na.action</dt>
 <dd><p>Handling of missing values in constraints or
      conditions. The default (<code><a href="https://rdrr.io/r/stats/na.fail.html" class="external-link">na.fail</a></code>) is to stop
      with missing values. Choices <code><a href="https://rdrr.io/r/stats/na.fail.html" class="external-link">na.omit</a></code> and
@@ -160,15 +170,18 @@
      <code>NA</code> for scores of missing observations. Unlike in
      <code><a href="cca.html">rda</a></code>, no WA scores are available for missing
      constraints or conditions.</p></dd>
-<dt>subset</dt>
+
+   <dt>subset</dt>
 <dd><p>Subset of data rows. This can be a logical vector
      which is <code>TRUE</code> for kept observations, or a logical
      expression which can contain variables in the working
      environment, <code>data</code> or species names of the community data
      (if given in the formula or as <code>comm</code> argument).</p></dd>
-<dt>...</dt>
+
+   <dt>...</dt>
 <dd><p>Other parameters passed to underlying functions (e.g.,
      <code><a href="metaMDS.html">metaMDSdist</a></code>).</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -224,9 +237,16 @@
     </div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>The functions return an object of class <code>capscale</code> or
-<code>dbrda</code> which inherits from <code><a href="cca.html">rda</a></code>. See
-<code><a href="cca.object.html">cca.object</a></code> for description of the result object.</p>
+    
+
+
+<p>The functions return an object of class <code>capscale</code> or</p>
+<p></p>
+<p><code>dbrda</code> which inherits from <code><a href="cca.html">rda</a></code>. See</p>
+<p></p>
+<p><code><a href="cca.object.html">cca.object</a></code> for description of the result object.</p>
+
+
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
@@ -285,12 +305,12 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">varespec</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">varechem</span><span class="op">)</span></span>
-<span class="r-in"><span class="co">## Basic Analysis</span></span>
-<span class="r-in"><span class="va">vare.cap</span> <span class="op">&lt;-</span> <span class="fu">capscale</span><span class="op">(</span><span class="va">varespec</span> <span class="op">~</span> <span class="va">N</span> <span class="op">+</span> <span class="va">P</span> <span class="op">+</span> <span class="va">K</span> <span class="op">+</span> <span class="fu">Condition</span><span class="op">(</span><span class="va">Al</span><span class="op">)</span>, <span class="va">varechem</span>,</span>
-<span class="r-in">                     dist<span class="op">=</span><span class="st">"bray"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">vare.cap</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">varespec</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">varechem</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co">## Basic Analysis</span></span></span>
+<span class="r-in"><span><span class="va">vare.cap</span> <span class="op">&lt;-</span> <span class="fu">capscale</span><span class="op">(</span><span class="va">varespec</span> <span class="op">~</span> <span class="va">N</span> <span class="op">+</span> <span class="va">P</span> <span class="op">+</span> <span class="va">K</span> <span class="op">+</span> <span class="fu">Condition</span><span class="op">(</span><span class="va">Al</span><span class="op">)</span>, <span class="va">varechem</span>,</span></span>
+<span class="r-in"><span>                     dist<span class="op">=</span><span class="st">"bray"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">vare.cap</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Call: capscale(formula = varespec ~ N + P + K + Condition(Al), data =</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> varechem, distance = "bray")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -313,22 +333,22 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  MDS12  MDS13  MDS14  MDS15 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 0.0277 0.0208 0.0073 0.0013 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">vare.cap</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">vare.cap</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="capscale-1.png" alt="" width="700" height="1133"></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/stats/anova.html" class="external-link">anova</a></span><span class="op">(</span><span class="va">vare.cap</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/anova.html" class="external-link">anova</a></span><span class="op">(</span><span class="va">vare.cap</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Permutation test for capscale under reduced model</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Permutation: free</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of permutations: 999</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Model: capscale(formula = varespec ~ N + P + K + Condition(Al), data = varechem, distance = "bray")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>          Df SumOfSqs      F Pr(&gt;F)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Model     3  0.99717 2.2324  0.005 **</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Model     3  0.99717 2.2324  0.006 **</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Residual 19  2.82904                 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
-<span class="r-in"><span class="co">## Avoid negative eigenvalues with additive constant</span></span>
-<span class="r-in"><span class="fu">capscale</span><span class="op">(</span><span class="va">varespec</span> <span class="op">~</span> <span class="va">N</span> <span class="op">+</span> <span class="va">P</span> <span class="op">+</span> <span class="va">K</span> <span class="op">+</span> <span class="fu">Condition</span><span class="op">(</span><span class="va">Al</span><span class="op">)</span>, <span class="va">varechem</span>,</span>
-<span class="r-in">                     dist<span class="op">=</span><span class="st">"bray"</span>, add <span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="co">## Avoid negative eigenvalues with additive constant</span></span></span>
+<span class="r-in"><span><span class="fu">capscale</span><span class="op">(</span><span class="va">varespec</span> <span class="op">~</span> <span class="va">N</span> <span class="op">+</span> <span class="va">P</span> <span class="op">+</span> <span class="va">K</span> <span class="op">+</span> <span class="fu">Condition</span><span class="op">(</span><span class="va">Al</span><span class="op">)</span>, <span class="va">varechem</span>,</span></span>
+<span class="r-in"><span>                     dist<span class="op">=</span><span class="st">"bray"</span>, add <span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Call: capscale(formula = varespec ~ N + P + K + Condition(Al), data =</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> varechem, distance = "bray", add = TRUE)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -351,9 +371,9 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Constant added to distances: 0.07413903 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span class="co">## Avoid negative eigenvalues by taking square roots of dissimilarities</span></span>
-<span class="r-in"><span class="fu">capscale</span><span class="op">(</span><span class="va">varespec</span> <span class="op">~</span> <span class="va">N</span> <span class="op">+</span> <span class="va">P</span> <span class="op">+</span> <span class="va">K</span> <span class="op">+</span> <span class="fu">Condition</span><span class="op">(</span><span class="va">Al</span><span class="op">)</span>, <span class="va">varechem</span>,</span>
-<span class="r-in">                     dist <span class="op">=</span> <span class="st">"bray"</span>, sqrt.dist<span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="co">## Avoid negative eigenvalues by taking square roots of dissimilarities</span></span></span>
+<span class="r-in"><span><span class="fu">capscale</span><span class="op">(</span><span class="va">varespec</span> <span class="op">~</span> <span class="va">N</span> <span class="op">+</span> <span class="va">P</span> <span class="op">+</span> <span class="va">K</span> <span class="op">+</span> <span class="fu">Condition</span><span class="op">(</span><span class="va">Al</span><span class="op">)</span>, <span class="va">varechem</span>,</span></span>
+<span class="r-in"><span>                     dist <span class="op">=</span> <span class="st">"bray"</span>, sqrt.dist<span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Call: capscale(formula = varespec ~ N + P + K + Condition(Al), data =</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> varechem, distance = "bray", sqrt.dist = TRUE)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -374,8 +394,8 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 0.9680 0.6100 0.4469 0.3837 0.3371 0.3012 0.2558 0.2010 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (Showing 8 of 19 unconstrained eigenvalues)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span class="co">## Principal coordinates analysis with extended dissimilarities</span></span>
-<span class="r-in"><span class="fu">capscale</span><span class="op">(</span><span class="va">varespec</span> <span class="op">~</span> <span class="fl">1</span>, dist<span class="op">=</span><span class="st">"bray"</span>, metaMDS <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="co">## Principal coordinates analysis with extended dissimilarities</span></span></span>
+<span class="r-in"><span><span class="fu">capscale</span><span class="op">(</span><span class="va">varespec</span> <span class="op">~</span> <span class="fl">1</span>, dist<span class="op">=</span><span class="st">"bray"</span>, metaMDS <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Square root transformation</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Wisconsin double standardization</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Call: capscale(formula = varespec ~ 1, distance = "bray", metaMDSdist =</span>
@@ -395,9 +415,9 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> metaMDSdist transformed data: wisconsin(sqrt(varespec)) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span class="co">## dbrda</span></span>
-<span class="r-in"><span class="fu">dbrda</span><span class="op">(</span><span class="va">varespec</span> <span class="op">~</span> <span class="va">N</span> <span class="op">+</span> <span class="va">P</span> <span class="op">+</span> <span class="va">K</span> <span class="op">+</span> <span class="fu">Condition</span><span class="op">(</span><span class="va">Al</span><span class="op">)</span>, <span class="va">varechem</span>,</span>
-<span class="r-in">                     dist<span class="op">=</span><span class="st">"bray"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="co">## dbrda</span></span></span>
+<span class="r-in"><span><span class="fu">dbrda</span><span class="op">(</span><span class="va">varespec</span> <span class="op">~</span> <span class="va">N</span> <span class="op">+</span> <span class="va">P</span> <span class="op">+</span> <span class="va">K</span> <span class="op">+</span> <span class="fu">Condition</span><span class="op">(</span><span class="va">Al</span><span class="op">)</span>, <span class="va">varechem</span>,</span></span>
+<span class="r-in"><span>                     dist<span class="op">=</span><span class="st">"bray"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Call: dbrda(formula = varespec ~ N + P + K + Condition(Al), data =</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> varechem, distance = "bray")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -417,9 +437,9 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 0.9054 0.5070 0.3336 0.2581 0.2027 0.1605 0.1221 0.0825 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (Showing 8 of 19 unconstrained eigenvalues)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span class="co">## avoid negative eigenvalues also with Jaccard distances</span></span>
-<span class="r-in"><span class="fu">dbrda</span><span class="op">(</span><span class="va">varespec</span> <span class="op">~</span> <span class="va">N</span> <span class="op">+</span> <span class="va">P</span> <span class="op">+</span> <span class="va">K</span> <span class="op">+</span> <span class="fu">Condition</span><span class="op">(</span><span class="va">Al</span><span class="op">)</span>, <span class="va">varechem</span>,</span>
-<span class="r-in">                     dist<span class="op">=</span><span class="st">"jaccard"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="co">## avoid negative eigenvalues also with Jaccard distances</span></span></span>
+<span class="r-in"><span><span class="fu">dbrda</span><span class="op">(</span><span class="va">varespec</span> <span class="op">~</span> <span class="va">N</span> <span class="op">+</span> <span class="va">P</span> <span class="op">+</span> <span class="va">K</span> <span class="op">+</span> <span class="fu">Condition</span><span class="op">(</span><span class="va">Al</span><span class="op">)</span>, <span class="va">varechem</span>,</span></span>
+<span class="r-in"><span>                     dist<span class="op">=</span><span class="st">"jaccard"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Call: dbrda(formula = varespec ~ N + P + K + Condition(Al), data =</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> varechem, distance = "jaccard")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -446,11 +466,11 @@
 
 
     <footer><div class="pkgdown-footer-left">
-  <p></p><p>Developed by Jari Oksanen.</p>
+  <p></p><p>Developed by Jari Oksanen, Gavin L. Simpson, F. Guillaume Blanchet, Roeland Kindt, Pierre Legendre, Peter R. Minchin, R.B. O’Hara, Peter Solymos, M. Henry H. Stevens, Eduard Szoecs, Helene Wagner, Matt Barbour, Michael Bedward, Ben Bolker, Daniel Borcard, Gustavo Carvalho, Michael Chirico, Miquel De Caceres, Sebastien Durand, Heloisa Beatriz Antoniazi Evangelista, Rich FitzJohn, Michael Friendly, Brendan Furneaux, Geoffrey Hannigan, Mark O. Hill, Leo Lahti, Dan McGlinn, Marie-Helene Ouellette, Eduardo Ribeiro Cunha, Tyler Smith, Adrian Stier, Cajo J.F. Ter Braak, James Weedon.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
     </footer></div>

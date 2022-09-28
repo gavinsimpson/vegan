@@ -6,7 +6,7 @@
   traditional constrained ordination. They can also be used to study how
   the effects of a factor A depend on the levels of a factor
   B, that is A + A:B, in a multivariate response
-  experiment."><title>Principal Response Curves for Treatments with Repeated Observations — prc • vegan</title><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Principal Response Curves for Treatments with Repeated Observations — prc"><meta property="og:description" content="Principal Response Curves (PRC) are a special case of
+  experiment."><title>Principal Response Curves for Treatments with Repeated Observations — prc • vegan</title><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Principal Response Curves for Treatments with Repeated Observations — prc"><meta property="og:description" content="Principal Response Curves (PRC) are a special case of
   Redundancy Analysis (rda) for multivariate responses in
   repeated observation design. They were originally suggested for
   ecological communities. They should be easier to interpret than
@@ -24,7 +24,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">vegan</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.6-0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">2.6-3</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -75,14 +75,14 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">prc</span><span class="op">(</span><span class="va">response</span>, <span class="va">treatment</span>, <span class="va">time</span>, <span class="va">...</span><span class="op">)</span>
-<span class="co"># S3 method for prc</span>
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">object</span>, axis <span class="op">=</span> <span class="fl">1</span>, scaling <span class="op">=</span> <span class="st">"symmetric"</span>, <span class="va">const</span>,
-        digits <span class="op">=</span> <span class="fl">4</span>, correlation <span class="op">=</span> <span class="cn">FALSE</span>, <span class="va">...</span><span class="op">)</span>
-<span class="co"># S3 method for prc</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">x</span>, species <span class="op">=</span> <span class="cn">TRUE</span>, <span class="va">select</span>, scaling <span class="op">=</span> <span class="st">"symmetric"</span>,
-     axis <span class="op">=</span> <span class="fl">1</span>, correlation <span class="op">=</span> <span class="cn">FALSE</span>, <span class="va">const</span>, type <span class="op">=</span> <span class="st">"l"</span>, <span class="va">xlab</span>, <span class="va">ylab</span>, <span class="va">ylim</span>,
-     lty <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, col <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">6</span>, <span class="va">pch</span>, <span class="va">legpos</span>, cex <span class="op">=</span> <span class="fl">0.8</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">prc</span><span class="op">(</span><span class="va">response</span>, <span class="va">treatment</span>, <span class="va">time</span>, <span class="va">...</span><span class="op">)</span></span>
+<span><span class="co"># S3 method for prc</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">object</span>, axis <span class="op">=</span> <span class="fl">1</span>, scaling <span class="op">=</span> <span class="st">"symmetric"</span>, <span class="va">const</span>,</span>
+<span>        digits <span class="op">=</span> <span class="fl">4</span>, correlation <span class="op">=</span> <span class="cn">FALSE</span>, <span class="va">...</span><span class="op">)</span></span>
+<span><span class="co"># S3 method for prc</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">x</span>, species <span class="op">=</span> <span class="cn">TRUE</span>, <span class="va">select</span>, scaling <span class="op">=</span> <span class="st">"symmetric"</span>,</span>
+<span>     axis <span class="op">=</span> <span class="fl">1</span>, correlation <span class="op">=</span> <span class="cn">FALSE</span>, <span class="va">const</span>, type <span class="op">=</span> <span class="st">"l"</span>, <span class="va">xlab</span>, <span class="va">ylab</span>, <span class="va">ylim</span>,</span>
+<span>     lty <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, col <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">6</span>, <span class="va">pch</span>, <span class="va">legpos</span>, cex <span class="op">=</span> <span class="fl">0.8</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -91,16 +91,21 @@
 <dd><p>Multivariate response data. Typically these are
     community (species) data. If the data are counts, they probably
     should be log transformed prior to the analysis.</p></dd>
-<dt>treatment</dt>
+
+  <dt>treatment</dt>
 <dd><p>A factor for treatments.</p></dd>
-<dt>time</dt>
+
+  <dt>time</dt>
 <dd><p>An unordered factor defining the observations times in
     the repeated design.</p></dd>
-<dt>object, x</dt>
+
+  <dt>object, x</dt>
 <dd><p>An <code>prc</code> result object.</p></dd>
-<dt>axis</dt>
+
+  <dt>axis</dt>
 <dd><p>Axis shown (only one axis can be selected).</p></dd>
-<dt>scaling</dt>
+
+  <dt>scaling</dt>
 <dd><p>Scaling of species scores, identical to the
     <code>scaling</code> in <code><a href="plot.cca.html">scores.rda</a></code>.</p>
 <p>The type of scores can also be specified as one of <code>"none"</code>,
@@ -109,41 +114,54 @@
     respectively. Argument <code>correlation</code> can be used in combination
     with these character descriptions to get the corresponding negative
     value.</p></dd>
-<dt>const</dt>
+
+  <dt>const</dt>
 <dd><p>General scaling constant for species scores (see
     <code><a href="plot.cca.html">scores.rda</a></code> for details). Lower values will reduce the
     range of species scores, but will not influence the regression
     coefficients.</p></dd>
-<dt>digits</dt>
+
+  <dt>digits</dt>
 <dd><p>Number of significant digits displayed.</p></dd>
-<dt>correlation</dt>
+
+  <dt>correlation</dt>
 <dd><p>logical; if <code>scaling</code> is a character
     description of the scaling type, <code>correlation</code> can be used to
     select correlation-like scores for PCA. See argument <code>scaling</code>
     for details.</p></dd>
-<dt>species</dt>
+
+  <dt>species</dt>
 <dd><p>Display species scores.</p></dd>
-<dt>select</dt>
+
+  <dt>select</dt>
 <dd><p>Vector to select displayed species. This can be a vector
     of indices or a logical vector which is <code>TRUE</code> for the selected
     species</p></dd>
-<dt>type</dt>
+
+  <dt>type</dt>
 <dd><p>Type of plot: <code>"l"</code> for lines, <code>"p"</code> for points
     or <code>"b"</code> for both.</p></dd>
-<dt>xlab, ylab</dt>
+
+  <dt>xlab, ylab</dt>
 <dd><p>Text to replace default axis labels.</p></dd>
-<dt>ylim</dt>
+
+  <dt>ylim</dt>
 <dd><p>Limits for the vertical axis.</p></dd>
-<dt>lty, col, pch</dt>
+
+  <dt>lty, col, pch</dt>
 <dd><p>Line type, colour and plotting characters
     (defaults supplied).</p></dd>
-<dt>legpos</dt>
+
+  <dt>legpos</dt>
 <dd><p>The position of the <code><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend</a></code>. A guess is
     made if this is not supplied, and <code>NA</code> will suppress legend.</p></dd>
-<dt>cex</dt>
+
+  <dt>cex</dt>
 <dd><p>Character expansion for symbols and species labels.</p></dd>
-<dt>...</dt>
+
+  <dt>...</dt>
 <dd><p>Other parameters passed to functions.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -182,9 +200,12 @@
     </div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>The function is a special case of <code><a href="cca.html">rda</a></code> and returns its
-  result object (see <code><a href="cca.object.html">cca.object</a></code>). However, a special
-<code>summary</code> and <code>plot</code> methods display returns differently
+    
+
+<p>The function is a special case of <code><a href="cca.html">rda</a></code> and returns its
+  result object (see <code><a href="cca.object.html">cca.object</a></code>). However, a special</p>
+<p></p>
+<p><code>summary</code> and <code>plot</code> methods display returns differently
   than in <code><a href="cca.html">rda</a></code>.</p>
     </div>
     <div class="section level2">
@@ -214,16 +235,16 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co">## Chlorpyrifos experiment and experimental design: Pesticide</span></span>
-<span class="r-in"><span class="co">## treatment in ditches (replicated) and followed over from 4 weeks</span></span>
-<span class="r-in"><span class="co">## before to 24 weeks after exposure </span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">pyrifos</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">week</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/gl.html" class="external-link">gl</a></span><span class="op">(</span><span class="fl">11</span>, <span class="fl">12</span>, labels<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">4</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">0.1</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">8</span>, <span class="fl">12</span>, <span class="fl">15</span>, <span class="fl">19</span>, <span class="fl">24</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">dose</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0.9</span>, <span class="fl">0</span>, <span class="fl">44</span>, <span class="fl">6</span>, <span class="fl">0.1</span>, <span class="fl">44</span>, <span class="fl">0.9</span>, <span class="fl">0</span>, <span class="fl">6</span><span class="op">)</span>, <span class="fl">11</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">ditch</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/gl.html" class="external-link">gl</a></span><span class="op">(</span><span class="fl">12</span>, <span class="fl">1</span>, length<span class="op">=</span><span class="fl">132</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># PRC</span></span>
-<span class="r-in"><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu">prc</span><span class="op">(</span><span class="va">pyrifos</span>, <span class="va">dose</span>, <span class="va">week</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">mod</span>            <span class="co"># RDA</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co">## Chlorpyrifos experiment and experimental design: Pesticide</span></span></span>
+<span class="r-in"><span><span class="co">## treatment in ditches (replicated) and followed over from 4 weeks</span></span></span>
+<span class="r-in"><span><span class="co">## before to 24 weeks after exposure </span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">pyrifos</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">week</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/gl.html" class="external-link">gl</a></span><span class="op">(</span><span class="fl">11</span>, <span class="fl">12</span>, labels<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">4</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">0.1</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">8</span>, <span class="fl">12</span>, <span class="fl">15</span>, <span class="fl">19</span>, <span class="fl">24</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">dose</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0.9</span>, <span class="fl">0</span>, <span class="fl">44</span>, <span class="fl">6</span>, <span class="fl">0.1</span>, <span class="fl">44</span>, <span class="fl">0.9</span>, <span class="fl">0</span>, <span class="fl">6</span><span class="op">)</span>, <span class="fl">11</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">ditch</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/gl.html" class="external-link">gl</a></span><span class="op">(</span><span class="fl">12</span>, <span class="fl">1</span>, length<span class="op">=</span><span class="fl">132</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># PRC</span></span></span>
+<span class="r-in"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu">prc</span><span class="op">(</span><span class="va">pyrifos</span>, <span class="va">dose</span>, <span class="va">week</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">mod</span>            <span class="co"># RDA</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Call: prc(response = pyrifos, treatment = dose, time = week)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                Inertia Proportion Rank</span>
@@ -248,7 +269,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 17.156  9.189  7.585  6.064  5.730  4.843  4.518  4.105 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (Showing 8 of 77 unconstrained eigenvalues)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span>   <span class="co"># PRC</span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span>   <span class="co"># PRC</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Call:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> prc(response = pyrifos, treatment = dose, time = week) </span>
@@ -313,14 +334,14 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 0.9 0.03249 0.02857</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 6   0.06091 0.03372</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 44  0.10672 0.05739</span>
-<span class="r-in"><span class="va">logabu</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">colSums</a></span><span class="op">(</span><span class="va">pyrifos</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mod</span>, select <span class="op">=</span> <span class="va">logabu</span> <span class="op">&gt;</span> <span class="fl">100</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">logabu</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">colSums</a></span><span class="op">(</span><span class="va">pyrifos</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mod</span>, select <span class="op">=</span> <span class="va">logabu</span> <span class="op">&gt;</span> <span class="fl">100</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="prc-1.png" alt="" width="700" height="1133"></span>
-<span class="r-in"><span class="co">## Ditches are randomized, we have a time series, and are only</span></span>
-<span class="r-in"><span class="co">## interested in the first axis</span></span>
-<span class="r-in"><span class="va">ctrl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/permute/man/how.html" class="external-link">how</a></span><span class="op">(</span>plots <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/permute/man/how.html" class="external-link">Plots</a></span><span class="op">(</span>strata <span class="op">=</span> <span class="va">ditch</span>,type <span class="op">=</span> <span class="st">"free"</span><span class="op">)</span>,</span>
-<span class="r-in">    within <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/permute/man/how.html" class="external-link">Within</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"series"</span><span class="op">)</span>, nperm <span class="op">=</span> <span class="fl">99</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/stats/anova.html" class="external-link">anova</a></span><span class="op">(</span><span class="va">mod</span>, permutations <span class="op">=</span> <span class="va">ctrl</span>, first<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="co">## Ditches are randomized, we have a time series, and are only</span></span></span>
+<span class="r-in"><span><span class="co">## interested in the first axis</span></span></span>
+<span class="r-in"><span><span class="va">ctrl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/permute/man/how.html" class="external-link">how</a></span><span class="op">(</span>plots <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/permute/man/how.html" class="external-link">Plots</a></span><span class="op">(</span>strata <span class="op">=</span> <span class="va">ditch</span>,type <span class="op">=</span> <span class="st">"free"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    within <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/permute/man/how.html" class="external-link">Within</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"series"</span><span class="op">)</span>, nperm <span class="op">=</span> <span class="fl">99</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/anova.html" class="external-link">anova</a></span><span class="op">(</span><span class="va">mod</span>, permutations <span class="op">=</span> <span class="va">ctrl</span>, first<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Permutation test for rda under reduced model</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Plots: ditch, plot permutation: free</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Permutation: series</span>
@@ -339,11 +360,11 @@
 
 
     <footer><div class="pkgdown-footer-left">
-  <p></p><p>Developed by Jari Oksanen.</p>
+  <p></p><p>Developed by Jari Oksanen, Gavin L. Simpson, F. Guillaume Blanchet, Roeland Kindt, Pierre Legendre, Peter R. Minchin, R.B. O’Hara, Peter Solymos, M. Henry H. Stevens, Eduard Szoecs, Helene Wagner, Matt Barbour, Michael Bedward, Ben Bolker, Daniel Borcard, Gustavo Carvalho, Michael Chirico, Miquel De Caceres, Sebastien Durand, Heloisa Beatriz Antoniazi Evangelista, Rich FitzJohn, Michael Friendly, Brendan Furneaux, Geoffrey Hannigan, Mark O. Hill, Leo Lahti, Dan McGlinn, Marie-Helene Ouellette, Eduardo Ribeiro Cunha, Tyler Smith, Adrian Stier, Cajo J.F. Ter Braak, James Weedon.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
     </footer></div>
