@@ -10,7 +10,7 @@ The function fits environmental vectors or factors onto an
   presented by showing its gradient (direction of steepest increase)
   using an arrow. The environmental variables are the dependent
   variables that are explained by the ordination scores, and each
-  dependent variable is analysed separately."><title>Fits an Environmental Vector or Factor onto an Ordination — envfit • vegan</title><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Fits an Environmental Vector or Factor onto an Ordination — envfit"><meta property="og:description" content="
+  dependent variable is analysed separately."><title>Fits an Environmental Vector or Factor onto an Ordination — envfit • vegan</title><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Fits an Environmental Vector or Factor onto an Ordination — envfit"><meta property="og:description" content="
 
 The function fits environmental vectors or factors onto an
   ordination. The projections of points onto vectors have maximum
@@ -361,49 +361,52 @@ The function fits environmental vectors or factors onto an
 <span class="r-out co"><span class="r-pr">#&gt;</span> Square root transformation</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Wisconsin double standardization</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Run 0 stress 0.1843196 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Run 1 stress 0.195049 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Run 2 stress 0.1962451 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Run 3 stress 0.2094754 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Run 4 stress 0.2223248 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Run 5 stress 0.196245 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Run 6 stress 0.2069724 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Run 7 stress 0.2225191 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Run 8 stress 0.2444785 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Run 9 stress 0.2088293 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Run 10 stress 0.18458 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ... Procrustes: rmse 0.04935307  max resid 0.1575039 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Run 11 stress 0.1948413 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Run 12 stress 0.2215721 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Run 13 stress 0.1955837 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Run 14 stress 0.2104991 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Run 15 stress 0.18458 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ... Procrustes: rmse 0.04937287  max resid 0.1576107 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Run 16 stress 0.2137687 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Run 17 stress 0.2126568 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Run 18 stress 0.2234893 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Run 19 stress 0.1962451 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Run 20 stress 0.1948414 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> *** Best solution was not repeated -- monoMDS stopping criteria:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     20: stress ratio &gt; sratmax</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Run 1 stress 0.2028828 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Run 2 stress 0.1843196 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ... New best solution</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ... Procrustes: rmse 1.74396e-05  max resid 6.927044e-05 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ... Similar to previous best</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Run 3 stress 0.1948413 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Run 4 stress 0.2382585 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Run 5 stress 0.2088293 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Run 6 stress 0.2399294 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Run 7 stress 0.195049 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Run 8 stress 0.1852397 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Run 9 stress 0.195049 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Run 10 stress 0.2301606 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Run 11 stress 0.2154149 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Run 12 stress 0.2390919 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Run 13 stress 0.2174384 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Run 14 stress 0.1974407 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Run 15 stress 0.1843196 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ... New best solution</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ... Procrustes: rmse 3.777611e-06  max resid 1.487291e-05 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ... Similar to previous best</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Run 16 stress 0.2411344 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Run 17 stress 0.210961 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Run 18 stress 0.1955836 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Run 19 stress 0.1974418 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Run 20 stress 0.1993238 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> *** Best solution repeated 1 times</span>
 <span class="r-in"><span><span class="op">(</span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu">envfit</span><span class="op">(</span><span class="va">ord</span>, <span class="va">varechem</span>, perm <span class="op">=</span> <span class="fl">999</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ***VECTORS</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             NMDS1    NMDS2     r2 Pr(&gt;r)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> N        -0.05039 -0.99873 0.2081  0.091 .  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> P         0.68707  0.72659 0.1755  0.145    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> K         0.82733  0.56171 0.1657  0.157    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Ca        0.75017  0.66124 0.2811  0.037 *  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Mg        0.69680  0.71727 0.3493  0.011 *  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> S         0.27631  0.96107 0.1774  0.140    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Al       -0.83771  0.54611 0.5155  0.001 ***</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Fe       -0.86190  0.50708 0.4000  0.007 ** </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Mn        0.80229 -0.59693 0.5322  0.001 ***</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Zn        0.66523  0.74664 0.1779  0.137    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Mo       -0.84873  0.52882 0.0517  0.572    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Baresoil  0.87204 -0.48943 0.2494  0.047 *  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Humdepth  0.92632 -0.37673 0.5590  0.001 ***</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> pH       -0.79905  0.60127 0.2624  0.038 *  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> N        -0.05040 -0.99873 0.2081  0.086 .  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> P         0.68702  0.72664 0.1755  0.134    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> K         0.82729  0.56178 0.1657  0.149    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Ca        0.75015  0.66127 0.2811  0.036 *  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mg        0.69676  0.71731 0.3494  0.008 ** </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> S         0.27626  0.96108 0.1774  0.136    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Al       -0.83777  0.54603 0.5155  0.003 ** </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Fe       -0.86198  0.50694 0.4001  0.004 ** </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mn        0.80233 -0.59688 0.5322  0.002 ** </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Zn        0.66518  0.74668 0.1779  0.132    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mo       -0.84875  0.52879 0.0517  0.554    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Baresoil  0.87210 -0.48932 0.2494  0.049 *  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Humdepth  0.92636 -0.37664 0.5590  0.001 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> pH       -0.79907  0.60123 0.2624  0.041 *  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Permutation: free</span>
@@ -412,20 +415,20 @@ The function fits environmental vectors or factors onto an
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="scores.html">scores</a></span><span class="op">(</span><span class="va">fit</span>, <span class="st">"vectors"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                NMDS1      NMDS2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> N        -0.02298448 -0.4555495</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> P         0.28785488  0.3044152</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> K         0.33676867  0.2286479</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Ca        0.39769955  0.3505525</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Mg        0.41184412  0.4239451</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> S         0.11637297  0.4047729</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Al       -0.60146204  0.3920973</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Fe       -0.54512355  0.3207078</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Mn        0.58531265 -0.4354945</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Zn        0.28058970  0.3149280</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Mo       -0.19293587  0.1202130</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Baresoil  0.43551045 -0.2444282</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Humdepth  0.69259827 -0.2816765</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> pH       -0.40932453  0.3080079</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> N        -0.02298873 -0.4555588</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> P         0.28784570  0.3044434</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> K         0.33676637  0.2286828</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Ca        0.39771710  0.3505932</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mg        0.41184282  0.4239891</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> S         0.11635753  0.4047900</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Al       -0.60150744  0.3920441</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Fe       -0.54520473  0.3206445</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mn        0.58533905 -0.4354544</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Zn        0.28057638  0.3149547</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mo       -0.19294649  0.1202100</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Baresoil  0.43554486 -0.2443781</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Humdepth  0.69262428 -0.2816092</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> pH       -0.40931066  0.3079719</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">ord</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">fit</span>, p.max <span class="op">=</span> <span class="fl">0.05</span>, col <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span></span></span>
@@ -480,7 +483,7 @@ The function fits environmental vectors or factors onto an
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
     </footer></div>
