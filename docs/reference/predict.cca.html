@@ -15,7 +15,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">vegan</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.7-0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.8-0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -275,10 +275,9 @@
 <span class="r-in"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="cca.html">cca</a></span><span class="op">(</span><span class="va">dune</span> <span class="op">~</span> <span class="va">A1</span> <span class="op">+</span> <span class="va">Management</span> <span class="op">+</span> <span class="fu">Condition</span><span class="op">(</span><span class="va">Moisture</span><span class="op">)</span>, data<span class="op">=</span><span class="va">dune.env</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="co"># Definition of the concepts 'fitted' and 'residuals'</span></span></span>
 <span class="r-in"><span><span class="va">mod</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Call: cca(formula = dune ~ A1 + Management + Condition(Moisture), data =</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> dune.env)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -- Model Summary --</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>               Inertia Proportion Rank</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Total          2.1153     1.0000     </span>
@@ -287,8 +286,6 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> Unconstrained  0.9761     0.4615   12</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Inertia is scaled Chi-square</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -- Eigenvalues --</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Eigenvalues for constrained axes:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    CCA1    CCA2    CCA3    CCA4 </span>
@@ -301,9 +298,8 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 0.01254 0.00928 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="cca.html">cca</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/fitted.values.html" class="external-link">fitted</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Call: cca(X = fitted(mod))</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -- Model Summary --</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Call: cca(X = fitted(mod))</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>               Inertia Rank</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Total          0.5109     </span>
@@ -311,24 +307,19 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Inertia is scaled Chi-square</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -- Eigenvalues --</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Eigenvalues for unconstrained axes:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     CA1     CA2     CA3     CA4 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 0.24932 0.12090 0.08160 0.05904 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu"><a href="cca.html">cca</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/residuals.html" class="external-link">residuals</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Call: cca(X = residuals(mod))</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -- Model Summary --</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Call: cca(X = residuals(mod))</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>               Inertia Rank</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Total          0.9761     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Unconstrained  0.9761   12</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Inertia is scaled Chi-square</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -- Eigenvalues --</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Eigenvalues for unconstrained axes:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     CA1     CA2     CA3     CA4     CA5     CA6     CA7     CA8     CA9    CA10 </span>
@@ -390,11 +381,11 @@
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Jari Oksanen, Gavin L. Simpson, F. Guillaume Blanchet, Roeland Kindt, Pierre Legendre, Peter R. Minchin, R.B. O’Hara, Peter Solymos, M. Henry H. Stevens, Eduard Szoecs, Helene Wagner, Matt Barbour, Michael Bedward, Ben Bolker, Daniel Borcard, Tuomas Borman, Gustavo Carvalho, Michael Chirico, Miquel De Caceres, Sebastien Durand, Heloisa Beatriz Antoniazi Evangelista, Rich FitzJohn, Michael Friendly, Brendan Furneaux, Geoffrey Hannigan, Mark O. Hill, Leo Lahti, Dan McGlinn, Marie-Helene Ouellette, Eduardo Ribeiro Cunha, Tyler Smith, Adrian Stier, Cajo J.F. Ter Braak, James Weedon.</p>
+  <p>Developed by Jari Oksanen, Gavin L. Simpson, F. Guillaume Blanchet, Roeland Kindt, Pierre Legendre, Peter R. Minchin, R.B. O’Hara, Peter Solymos, M. Henry H. Stevens, Eduard Szoecs, Helene Wagner, Matt Barbour, Michael Bedward, Ben Bolker, Daniel Borcard, Tuomas Borman, Gustavo Carvalho, Michael Chirico, Miquel De Caceres, Sebastien Durand, Heloisa Beatriz Antoniazi Evangelista, Rich FitzJohn, Michael Friendly, Brendan Furneaux, Geoffrey Hannigan, Mark O. Hill, Leo Lahti, Cameron Martino, Dan McGlinn, Marie-Helene Ouellette, Eduardo Ribeiro Cunha, Tyler Smith, Adrian Stier, Cajo J.F. Ter Braak, James Weedon.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

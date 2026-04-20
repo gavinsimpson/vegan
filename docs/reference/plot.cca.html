@@ -13,7 +13,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">vegan</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.7-0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.8-0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -139,7 +139,9 @@
     ordination (<code><a href="cca.html">cca</a></code> etc.). Setting this <code>TRUE</code> will
     draw arrows for any type of scores. This allows, e.g, using biplot
     arrows for species. The arrow head will be at the value of scores,
-    and possible text is moved outwards.</p></dd>
+    and possible text is moved outwards or somewhere around the
+    arrowhead with argument <code>optimize = TRUE</code> (possibly over the
+    arrow).</p></dd>
 
 
   <dt id="arg-spe-par-sit-par-con-par-bip-par-cen-par-reg-par">spe.par, sit.par, con.par, bip.par, cen.par, reg.par<a class="anchor" aria-label="anchor" href="#arg-spe-par-sit-par-con-par-bip-par-cen-par-reg-par"></a></dt>
@@ -173,11 +175,11 @@
   <dt id="arg-xlim-ylim">xlim, ylim<a class="anchor" aria-label="anchor" href="#arg-xlim-ylim"></a></dt>
 <dd><p>the x and y limits (min,max) of the plot.</p></dd>
 
-  <dt id="arg-labels">labels<a class="anchor" aria-label="anchor" href="#arg-labels"></a></dt>
-<dd><p>Optional text to be used instead of row names. If you
-    use this, it is good to check the default labels and their order
-    using <code>labels</code> command. If <code>labels</code> are given, they will
-    also be used in <code>select</code>.</p></dd>
+    <dt id="arg-labels">labels<a class="anchor" aria-label="anchor" href="#arg-labels"></a></dt>
+<dd><p>Optional text to be used for selected items instead of
+    row names. If you use this, it is good to check the default labels
+    and their order using <code>labels</code> command. If <code>select</code> is
+    given, give <code>labels</code> only to the selected items.</p></dd>
 
   <dt id="arg-arrow-mul">arrow.mul<a class="anchor" aria-label="anchor" href="#arg-arrow-mul"></a></dt>
 <dd><p>Factor to expand arrows in the graph.  Arrows will be
@@ -335,7 +337,7 @@
 <span class="r-plt img"><img src="plot.cca-1.png" alt="" width="700" height="1133"></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mod</span>, scaling<span class="op">=</span><span class="st">"sites"</span>, type <span class="op">=</span> <span class="st">"text"</span>,</span></span>
 <span class="r-in"><span>  sit.par <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"points"</span>, pch<span class="op">=</span><span class="fl">21</span>, col<span class="op">=</span><span class="st">"red"</span>, bg<span class="op">=</span><span class="st">"yellow"</span>, cex<span class="op">=</span><span class="fl">1.2</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>  spe.par <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>col<span class="op">=</span><span class="st">"blue"</span>, cex<span class="op">=</span><span class="fl">0.8</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  spe.par <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>col<span class="op">=</span><span class="st">"blue"</span>, cex<span class="op">=</span><span class="fl">0.8</span>, optimize <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  cen.par <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>bg<span class="op">=</span><span class="st">"white"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plot.cca-2.png" alt="" width="700" height="1133"></span>
 <span class="r-in"><span></span></span>
@@ -348,8 +350,7 @@
 <span class="r-plt img"><img src="plot.cca-3.png" alt="" width="700" height="1133"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## LC scores &amp; factors mean much overplotting: try optimize=TRUE</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mod</span>, display <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"lc"</span>,<span class="st">"sp"</span>,<span class="st">"cn"</span><span class="op">)</span>, optimize <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
-<span class="r-in"><span>   bip.par <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>optimize <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span> <span class="co"># arrows and optimize mix poorly</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mod</span>, display <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"lc"</span>,<span class="st">"sp"</span>,<span class="st">"cn"</span><span class="op">)</span>, optimize <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plot.cca-4.png" alt="" width="700" height="1133"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## catch the invisible result and use ordiplot support - the example</span></span></span>
@@ -381,11 +382,11 @@
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Jari Oksanen, Gavin L. Simpson, F. Guillaume Blanchet, Roeland Kindt, Pierre Legendre, Peter R. Minchin, R.B. O’Hara, Peter Solymos, M. Henry H. Stevens, Eduard Szoecs, Helene Wagner, Matt Barbour, Michael Bedward, Ben Bolker, Daniel Borcard, Tuomas Borman, Gustavo Carvalho, Michael Chirico, Miquel De Caceres, Sebastien Durand, Heloisa Beatriz Antoniazi Evangelista, Rich FitzJohn, Michael Friendly, Brendan Furneaux, Geoffrey Hannigan, Mark O. Hill, Leo Lahti, Dan McGlinn, Marie-Helene Ouellette, Eduardo Ribeiro Cunha, Tyler Smith, Adrian Stier, Cajo J.F. Ter Braak, James Weedon.</p>
+  <p>Developed by Jari Oksanen, Gavin L. Simpson, F. Guillaume Blanchet, Roeland Kindt, Pierre Legendre, Peter R. Minchin, R.B. O’Hara, Peter Solymos, M. Henry H. Stevens, Eduard Szoecs, Helene Wagner, Matt Barbour, Michael Bedward, Ben Bolker, Daniel Borcard, Tuomas Borman, Gustavo Carvalho, Michael Chirico, Miquel De Caceres, Sebastien Durand, Heloisa Beatriz Antoniazi Evangelista, Rich FitzJohn, Michael Friendly, Brendan Furneaux, Geoffrey Hannigan, Mark O. Hill, Leo Lahti, Cameron Martino, Dan McGlinn, Marie-Helene Ouellette, Eduardo Ribeiro Cunha, Tyler Smith, Adrian Stier, Cajo J.F. Ter Braak, James Weedon.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

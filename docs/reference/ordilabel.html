@@ -17,7 +17,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">vegan</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.7-0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.8-0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -73,9 +73,11 @@
 <dd><p>Kind of scores displayed (passed to
     <code><a href="scores.html">scores</a></code>).</p></dd>
 
+
   <dt id="arg-labels">labels<a class="anchor" aria-label="anchor" href="#arg-labels"></a></dt>
-<dd><p>Optional text used in plots instead of the default.  If
-    this is given, these labels are also used in <code>select</code>.</p></dd>
+<dd><p>Optional text used in plots instead of the default. If
+    <code>select</code> is given, the labels are given only to selected items
+    in the order they occur in the scores.</p></dd>
 
 
   <dt id="arg-choices">choices<a class="anchor" aria-label="anchor" href="#arg-choices"></a></dt>
@@ -83,8 +85,9 @@
 
 
   <dt id="arg-priority">priority<a class="anchor" aria-label="anchor" href="#arg-priority"></a></dt>
-<dd><p>Vector of the same length as the number of
-    labels. The items with high priority will be plotted uppermost.</p></dd>
+<dd><p>Vector of the same length as the number of scores or
+    selected items. The items with high priority will be plotted
+    uppermost.</p></dd>
 
 
   <dt id="arg-select">select<a class="anchor" aria-label="anchor" href="#arg-select"></a></dt>
@@ -125,8 +128,8 @@
   ordination <code>plot</code> command (see Examples).</p>
 <p>Other alternatives for cluttered plots are
   <code><a href="ordiplot.html">identify.ordiplot</a></code>, <code><a href="orditorp.html">orditorp</a></code>,
-  <code><a href="ordipointlabel.html">ordipointlabel</a></code> and <code><a href="https://rdrr.io/pkg/vegan3d/man/orditkplot.html" class="external-link">orditkplot</a></code>
-  (in <span class="pkg">vegan3d</span> package).</p>
+  <code><a href="ordipointlabel.html">ordipointlabel</a></code>, and <code>orditkplot</code> (<a href="https://CRAN.R-project.org/package=vegan3d" class="external-link"><span class="pkg">vegan3d</span></a>
+  package).</p>
     </div>
     <div class="section level2">
     <h2 id="author">Author<a class="anchor" aria-label="anchor" href="#author"></a></h2>
@@ -160,11 +163,11 @@
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Jari Oksanen, Gavin L. Simpson, F. Guillaume Blanchet, Roeland Kindt, Pierre Legendre, Peter R. Minchin, R.B. O’Hara, Peter Solymos, M. Henry H. Stevens, Eduard Szoecs, Helene Wagner, Matt Barbour, Michael Bedward, Ben Bolker, Daniel Borcard, Tuomas Borman, Gustavo Carvalho, Michael Chirico, Miquel De Caceres, Sebastien Durand, Heloisa Beatriz Antoniazi Evangelista, Rich FitzJohn, Michael Friendly, Brendan Furneaux, Geoffrey Hannigan, Mark O. Hill, Leo Lahti, Dan McGlinn, Marie-Helene Ouellette, Eduardo Ribeiro Cunha, Tyler Smith, Adrian Stier, Cajo J.F. Ter Braak, James Weedon.</p>
+  <p>Developed by Jari Oksanen, Gavin L. Simpson, F. Guillaume Blanchet, Roeland Kindt, Pierre Legendre, Peter R. Minchin, R.B. O’Hara, Peter Solymos, M. Henry H. Stevens, Eduard Szoecs, Helene Wagner, Matt Barbour, Michael Bedward, Ben Bolker, Daniel Borcard, Tuomas Borman, Gustavo Carvalho, Michael Chirico, Miquel De Caceres, Sebastien Durand, Heloisa Beatriz Antoniazi Evangelista, Rich FitzJohn, Michael Friendly, Brendan Furneaux, Geoffrey Hannigan, Mark O. Hill, Leo Lahti, Cameron Martino, Dan McGlinn, Marie-Helene Ouellette, Eduardo Ribeiro Cunha, Tyler Smith, Adrian Stier, Cajo J.F. Ter Braak, James Weedon.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">vegan</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.7-0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.8-0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,59 +37,144 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="2.7-0" id="vegan-27-0-in-development">vegan 2.7-0 (in development)<a class="anchor" aria-label="anchor" href="#vegan-27-0-in-development"></a></h2>
+<h2 class="pkg-version" data-toc-text="2.8-0" id="vegan-28-0">vegan 2.8-0<a class="anchor" aria-label="anchor" href="#vegan-28-0"></a></h2>
 <div class="section level3">
-<h3 id="installation-2-7-0">Installation<a class="anchor" aria-label="anchor" href="#installation-2-7-0"></a></h3>
-<ul><li><p><strong>vegan</strong> no longer depends on <strong>lattice</strong>, but only imports <strong>lattice</strong> functions. The <strong>lattice</strong> package is no longer automatically loaded. To use <strong>lattice</strong> functions directly, you must first attach the package with <code><a href="https://lattice.r-forge.r-project.org/" class="external-link">library(lattice)</a></code>. Longer-term plan is to remove <strong>lattice</strong> functions as soon as more modern alternatives in <strong>ggplot2</strong> are made available. See Discussion <a href="https://github.com/vegandevs/vegan/discussions/727" class="external-link">#727</a> and section Deprecated and Defunct for the changes in this release.</p></li>
-<li><p><strong>vegan</strong> no longer suggests <strong>tcltk</strong>, but suggests <strong>vegan3d</strong> (version 1.3-0). See <code>orditkplot</code> in section Deprecated and Defunct.</p></li>
+<h3 id="new-functions-2-8-0">New Functions<a class="anchor" aria-label="anchor" href="#new-functions-2-8-0"></a></h3>
+<ul><li><p><code>influence.cca</code>: a new wrapper function to return <code>hatvalues</code>, <code>rstandard</code>, <code>rstudent</code> and <code>cooks.distance</code>. The result can be amended with working fitted values, and returned in <code>tidy</code> format that can be used as input in <strong>ggplot2</strong> (or <strong>lattice</strong>) graphics to substitute defunct <code>ordiresids</code> function.</p></li>
+<li><p>Internal <code>ordConstrained</code> is exported. Function is the central numerical engine of constrained ordination methods (<code>cca</code>, <code>rda</code>, <code>dbrda</code>, <code>capscale</code>) and provides a hacker interface that can be embedded in other functions and used to develop alternative methods. The Examples show how to implement weighted RDA.</p></li>
 </ul></div>
 <div class="section level3">
-<h3 id="new-functions-2-7-0">New Functions<a class="anchor" aria-label="anchor" href="#new-functions-2-7-0"></a></h3>
-<ul><li>
-<p>A set of functions to add new points to an existing NMDS ordination from <code>metaMDS</code> or <code>monoMDS</code>. This serves the same purpose as adding new points to an existing eigenvector ordination (for instance, <code>predict.rda</code>). The main function is <code>MDSaddpoints</code>. This needs as an input rectangular matrix of dissimilarities of all new points (rows) to all old points (columns). Support function <code>dist2xy</code> can extract needed matrices from dissimilarities of all (old and new) points, and function <code>designdist2</code> can directly find the needed dissimilarities between two data matrices. In addition, <strong>analogue</strong> package can calculate such rectangular dissimilarities, including many indices that cannot be defined with <code>designdist2</code>.</p>
-<p>The function is still experimental. In particular the user interface may need development. Comments are welcome.</p>
+<h3 id="new-features-2-8-0">New Features<a class="anchor" aria-label="anchor" href="#new-features-2-8-0"></a></h3>
+<ul><li><p><code>metaMDS</code> can use any MDS function as an <code>engine</code> if the function takes as input dissimilarities, initial configuration and number of axes, and returns a list with elements stress and points for final solution. <code><a href="../reference/monoMDS.html">vegan::monoMDS</a></code> and <code><a href="https://rdrr.io/pkg/MASS/man/isoMDS.html" class="external-link">MASS::isoMDS</a></code> are such functions, but other MDS functions can be easily wrapped to make them compatible. The Examples in the help page shows how to wrap <code>smacof::mds</code>. The default engine is still <code><a href="../reference/monoMDS.html">vegan::monoMDS</a></code>, and the user experience with this default choice is unchanged.</p></li>
+<li><p><code>adonis2</code> can have <code>Condition</code> in formula allowing similar analysis of partial models as in <code>dbrda</code>.</p></li>
+<li>
+<p><code>plot.envfit</code> can use criterion <code>r2.min</code> for lower threshold of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>R</mi><mn>2</mn></msup><annotation encoding="application/x-tex">R^2</annotation></semantics></math> of displayed variables. Both <code>p.max</code> and <code>r2.min</code> must be satisfied for displayed items.</p>
+<p><code>plot.envfit</code> can optimize the location of text labels for factors and vectors (arrows).</p>
 </li>
-<li><p><code>centredist</code>: new functions to find distances of points to their group centroids in <code>betadisper</code> or in several ordination methods (<code>cca</code>, <code>rda</code>, <code>dbrda</code>, <code>wcmdscale</code>). Functions can find (weighted) Euclidean or Mahalanobis distances. See (<a href="https://stackoverflow.com/questions/77391007/" class="external-link uri">https://stackoverflow.com/questions/77391007/</a>) and issue <a href="https://github.com/vegandevs/vegan/issues/606" class="external-link">#606</a>.</p></li>
-<li><p><code>permulattice</code>: new function to use lattice graphics for <code>permustats</code> results without need to first issue <code><a href="https://lattice.r-forge.r-project.org/" class="external-link">library(lattice)</a></code>.</p></li>
+<li><p><code>plot.radfit.frame</code> uses now base graphics instead of <strong>lattice</strong>.</p></li>
+<li>
+<p><code>ordipointlabel</code> is faster. This was achieved using tighter bounding box which reduced the number of potentially overlapping labels. The used bounding box is shown with argument <code>bg  = &lt;colour&gt;</code>. The function is also invoked from <code>plot</code> and <code>text</code> functions for ordination results with argument <code>optimize = TRUE</code>.</p>
+<p><code>ordipointlabel</code> gained argument <code>points</code>. Setting <code>optimize=FALSE</code> suppresses drawing points which is useful if there already are points (or arrowheads) in the graph.</p>
+</li>
+<li><p>Position of arrow labels is improved with <code>optimize=TRUE</code> in ordination graphics.</p></li>
+<li><p><code>varpart</code> labels the sources of variation by the full definition of the term in plots, but switches to <code>X1</code> <em>etc</em> if the full name does not fit the graph. Tilde is stripped from the term name.</p></li>
+<li><p><code>adipart</code> can use Hill numbers 1 and 2 in additive diversity partitioning per wish of <a href="https://github.com/vegandevs/vegan/issues/752" class="external-link">#752</a>. Earlier it was possible to use these only <em>via</em> <code>hiersimu</code>.</p></li>
+<li><p>parallel processing is more robust on Windows, and also closes internally opened socket clusters after error in functions. Pull request <a href="https://github.com/vegandevs/vegan/issues/772" class="external-link">#772</a>.</p></li>
+<li><p><code>decorana</code> uses stricter convergence criteria similarly as most other <strong>vegan</strong> functions. Usually effects can be seen only in the last decimals.</p></li>
 </ul></div>
 <div class="section level3">
-<h3 id="new-features-2-7-0">New Features<a class="anchor" aria-label="anchor" href="#new-features-2-7-0"></a></h3>
+<h3 id="bug-fixes-2-8-0">Bug Fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-2-8-0"></a></h3>
+<ul><li><p><code>ordihull</code> and <code>ordiellipse</code> (and hence <code>ordiareatest</code>) queried and set graphical parameters also when nothing was drawn. Issue <a href="https://github.com/vegandevs/vegan/issues/774" class="external-link">#774</a>.</p></li>
+<li><p><code>mantel</code> and <code>mantel.partial</code> returned permutation results as one-column matrix instead of a vector in some parallelization schemes. Issue <a href="https://github.com/vegandevs/vegan/issues/773" class="external-link">#773</a>.</p></li>
+<li><p><code>cascadeKM</code> failed in parallel processing on Windows. Issue <a href="https://github.com/vegandevs/vegan/issues/771" class="external-link">#771</a>.</p></li>
+</ul></div>
+<div class="section level3">
+<h3 id="deprecated-defunct-and-resurrected-2-8-0">Deprecated, Defunct and Resurrected<a class="anchor" aria-label="anchor" href="#deprecated-defunct-and-resurrected-2-8-0"></a></h3>
+<ul><li><p>Lattice functions <code>ordicloud</code>, <code>ordiresids</code>and <code>ordisplom</code> are defunct. <code>ordicloud</code> is available in CRAN package <strong>vegan3d</strong> as <code>ordilattice3d</code>. New function <code>influence.cca</code> can prepare data to be used in similar graphics as <code>ordiresids</code> using <strong>ggplot2</strong> or <strong>lattice</strong>.</p></li>
+<li><p><strong>lattice</strong> functions <code>ordixyplot</code>, and <code>permulattice</code> (with <code>densityplot</code> and <code>qqmath</code> functions for <code>permustats</code>) are defunct. CRAN package <strong>ggvegan</strong> provides <code>autoplot</code> for these defunct functions. The functions were deprecated in CRAN release 2.7-3.</p></li>
+<li><p>Argument <code>thinplate</code> is finally defunct in <code>ordisurf</code>: use <code>isotropic</code>. The argument was deprecated in 2013 (CRAN release 2.0-8).</p></li>
+<li><p>Several base <code>plot</code> functions internally using <strong>lattice</strong> were marked as deprecated in CRAN release 2.7-3. Now these are resurrected as plain base functions. These include <code>plot</code> for <code>poolaccum</code> (also handling <code>estaccumR</code>), <code>renyi</code> (also handling <code>tsallis</code>), and <code>renyiaccum</code> (also handling <code>tsallisaccum</code>). The base <code>plot</code> functions are simpler, but the original <strong>lattice</strong> implementations can be reproduced with functions in the CRAN package <strong>ggvegan</strong>.</p></li>
+</ul></div>
+</div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="2.7-3" id="vegan-27-3">vegan 2.7-3<a class="anchor" aria-label="anchor" href="#vegan-27-3"></a></h2><p class="text-muted">CRAN release: 2026-03-04</p>
+<div class="section level3">
+<h3 id="new-features-2-7-3">New Features<a class="anchor" aria-label="anchor" href="#new-features-2-7-3"></a></h3>
+<ul><li><p><code>metaMDS</code> is more robust with missing values in community data.</p></li>
+<li><p><code>decostand</code> for data with zero row or column sums or maxima gives now <code>NaN</code> (not a number) in methods <code>"chi.square"</code>, <code>"frequency"</code>, <code>"hellinger"</code>, <code>"max"</code> and <code>"total"</code>. Since 2005 (CRAN release 1.6-10) we avoided division by zero and returned these as zero. However, this can give wrong and misleading results in further analysis, because originally invalid data is regarded as valid. As an example, see issue <a href="https://github.com/vegandevs/vegan/issues/762" class="external-link">#762</a>.</p></li>
+<li><p><code>vegdist</code> warns now when Morisita index is used with presence/absence data or when a sampling unit (row) has no counts above 1. Cases when two compared rows have largest count 1 and share no species are now handled smoothly (used to be <code>NaN</code>), but results for 0/1 rows are unreliable. For instance, two sampling units (rows) are regarded identical (distance 0) if they share one species although they differ in all other species with 0/1 data. It is best to use <code>method = "horn"</code> if <code>"morisita"</code> gives warnings. See issue <a href="https://github.com/vegandevs/vegan/issues/444" class="external-link">#444</a>.</p></li>
+<li><p><code>wisconsin</code> double standardization gained argument <code>na.rm</code> similarly as <code>decostand</code>.</p></li>
+</ul></div>
+<div class="section level3">
+<h3 id="bug-fixes-2-7-3">Bug Fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-2-7-3"></a></h3>
+<ul><li>
+<p><code>decostand(..., method = "rclr")</code> and <code>optspace</code> lost row and column names of imputed matrix. Issue <a href="https://github.com/vegandevs/vegan/issues/759" class="external-link">#759</a>.</p>
+<p>Back-transformation of <code>"rclr"</code> failed with <code>decobackstand</code>. Back-transformation cannot be done with imputed matrix, and without imputed matrix original zeros were returned as <code>NA</code>.</p>
+</li>
+<li><p><code>vegdist(..., binary = TRUE)</code> did not use binary data in Chi-square and Mahalanobis distances (methods <code>"chisq"</code> and <code>"mahalanobis"</code>).</p></li>
+<li><p><code>vegdist</code> for Chord and Hellinger distances gave wrong or misleading results when two sites were identical or one of sites was empty (all zeros). Issues <a href="https://github.com/vegandevs/vegan/issues/761" class="external-link">#761</a> and <a href="https://github.com/vegandevs/vegan/issues/762" class="external-link">#762</a>.</p></li>
+</ul></div>
+<div class="section level3">
+<h3 id="deprecated-2-7-3">Deprecated<a class="anchor" aria-label="anchor" href="#deprecated-2-7-3"></a></h3>
+<ul><li>Several Lattice functions are deprecated after CRAN release of <strong>ggvegan</strong> for <strong>ggplot2</strong> graphics. These include <code>ordixyplot</code>, <code>plot</code> functions for the results of <code>poolaccum</code>, <code>renyi</code> and <code>renyiaccum</code>, <code>permulattice</code> with <code>densityplot</code> and <code>qqmath</code> functions for <code>permustats</code>. <strong>ggvegan</strong> provides <code>autoplot</code> for all these deprecated functions.</li>
+</ul></div>
+</div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="2.7-2" id="vegan-27-2">vegan 2.7-2<a class="anchor" aria-label="anchor" href="#vegan-27-2"></a></h2><p class="text-muted">CRAN release: 2025-10-08</p>
+<div class="section level3">
+<h3 id="new-features-2-7-2">New Features<a class="anchor" aria-label="anchor" href="#new-features-2-7-2"></a></h3>
+<ul><li><p><strong>vegan</strong> is now more robust with community data frames with ‘automatic’ row names. ‘Automatic’ row names do not actually exist but data frames only have information on the number of row names needed, and names are generated automatically when they are queried. This is very commonly used in <code>tibble</code>. However, the row names are not generated by default when the data frame is changed to matrix for numerical analysis. Many methods in <strong>vegan</strong> assume that there are row names, in particular in ordination methods, and many functions failed with ‘automatic’ row names (<code>tibble</code>) and <strong>vegan</strong> could not be built or checked with them. Now the row names are forced in conversion to matrix and this should remove possible problems in using <code>tibble</code>.</p></li>
+<li><p><code>anova</code> and <code>permutest</code> for partial RDA, dbRDA <em>etc.</em> residualize constraints similarly as partial CCA has done since <strong>vegan</strong> release 2.6-6. This has an effect in partial models with <code>Condition</code> term.</p></li>
+<li><p><code>add1</code> for constrained ordination no longer bases permutation tests on partial model, but uses a method that is consistent with marginal tests in <code>drop1</code>. In <code>ordistep</code> the <em>P</em>-value of the last added term is unchanged when it is considered for dropping using the same permutations.</p></li>
+<li><p><code>anova.cca(..., by = "axis")</code> is no longer based on partial ordination but is consistent with other <code>by</code> cases. This has an effect on later non-significant axes, but in non-partial models does not influence the <em>P</em>-value of the first axis.</p></li>
+<li><p><code>biplot.rda</code> draws arrows of the same length both with <code>"points"</code> and <code>"text"</code>. Earlier shorter arrows were drawn with <code>"text"</code>. Now the arrow head is at the actual species scores and points to the text label similarly as in plot functions for rda and envfit.</p></li>
+<li><p><code>ordilabel</code> can use variable character expansion (<code>cex</code>) and with this <code>plot.cca</code>, <code>ordiplot</code> <em>etc.</em> gained the same ability.</p></li>
+</ul></div>
+<div class="section level3">
+<h3 id="bug-fixes-2-7-2">Bug Fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-2-7-2"></a></h3>
+<ul><li><p><code>anova</code> and <code>permutest</code> with arguments <code>by = "terms"</code> or <code>by =   "onedf"</code> was wrong in partial CCA. There were no problems in normal CCA without the <code>Condition</code> term, other [partial] constrained ordination methods, or with other <code>by</code> arguments. The bug was introduced in <strong>vegan</strong> release 2.6-6.</p></li>
+<li><p><code>summary</code> for <code>mantel</code>, <code>mrpp</code>, <code>oecosimu</code>, and <code>ordiareatest</code> did not pass dot arguments (<code>...</code>) to the underlying <code>summary.permustats</code>. These arguments allow changing sidedness or the critical <em>P</em>-value of the summary.</p></li>
+<li><p><code>decostand</code> standardization <code>"rrank"</code> failed with <code>na.rm = FALSE</code>. Bug report <a href="https://github.com/vegandevs/vegan/issues/753" class="external-link">#753</a>.</p></li>
+<li><p><code>ordilabel</code> and <code>ordipointlabel</code> froze the graphical device if the function stopped with an error.</p></li>
+</ul></div>
+</div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="2.7-1" id="vegan-27-1">vegan 2.7-1<a class="anchor" aria-label="anchor" href="#vegan-27-1"></a></h2><p class="text-muted">CRAN release: 2025-06-05</p>
+<div class="section level3">
+<h3 id="installation-2-7-1">Installation<a class="anchor" aria-label="anchor" href="#installation-2-7-1"></a></h3>
+<ul><li><p><strong>vegan</strong> no longer depends on <strong>lattice</strong>, but only imports <strong>lattice</strong> functions. The <strong>lattice</strong> package is no longer automatically loaded. To use <strong>lattice</strong> functions directly, you must first attach the package with <code><a href="https://lattice.r-forge.r-project.org/" class="external-link">library(lattice)</a></code>. Longer-term plan is to remove <strong>lattice</strong> functions as soon as more modern alternatives in <strong>ggplot2</strong> are made available. See Discussion <a href="https://github.com/vegandevs/vegan/discussions/727" class="external-link">#727</a> and section Deprecated and Defunct for the changes in this release.</p></li>
+<li><p><strong>vegan</strong> no longer suggests <strong>tcltk</strong>. See <code>orditkplot</code> in section Deprecated and Defunct.</p></li>
+</ul></div>
+<div class="section level3">
+<h3 id="new-functions-2-7-1">New Functions<a class="anchor" aria-label="anchor" href="#new-functions-2-7-1"></a></h3>
+<ul><li><p>Added a set of functions to add new points to an existing NMDS ordination from <code>metaMDS</code> or <code>monoMDS</code>. This serves the same purpose as adding new points to an existing eigenvector ordination (for instance, <code>predict.rda</code>). The main function is <code>MDSaddpoints</code>. This needs an input of rectangular matrix of dissimilarities of all new points (rows) to all old points (columns). Support function <code>dist2xy</code> can extract needed matrices from dissimilarities of all (old and new) points, and function <code>designdist2</code> can directly find the needed dissimilarities between two data matrices. In addition, <strong>analogue</strong> package can calculate such rectangular dissimilarities, including many indices that cannot be defined with <code>designdist2</code>.</p></li>
+<li><p><code>betadistances</code>: new functions to find distances of points to group centroids in <code>betadisper</code>. See <a href="https://stackoverflow.com/questions/77391007/" class="external-link uri">https://stackoverflow.com/questions/77391007/</a> and issue <a href="https://github.com/vegandevs/vegan/issues/606" class="external-link">#606</a>.</p></li>
+<li><p><code>permulattice</code>: new function to use lattice graphics for <code>permustats</code> results without need to first issue <code><a href="https://lattice.r-forge.r-project.org/" class="external-link">library(lattice)</a></code>.</p></li>
+<li><p><code>optspace</code>: a new function for matrix completion or filling missing elements in a matrix. The function is used in robust Aitchison distance (see below).</p></li>
+</ul></div>
+<div class="section level3">
+<h3 id="new-features-in-ordination-graphics-2-7-1">New Features in Ordination Graphics<a class="anchor" aria-label="anchor" href="#new-features-in-ordination-graphics-2-7-1"></a></h3>
 <ul><li>
 <p><code>plot.cca</code> graphics can be configured. <code>plot.cca</code> had hard-coded graphical parameters and user arguments were ignored (see issue <a href="https://github.com/vegandevs/vegan/issues/656" class="external-link">#656</a>). Now graphical parameters can be given either for all score types, or with a list of graphical parameters for a specific score.</p>
-<p><code>text.ordiplot</code> and hence <code>plot.cca</code> gained argument <code>optimize</code> that will call <code>ordipointlabel</code> to optimize the location of the text to minimize over-writing, but mark the real scores with a point.</p>
-<p><code>text.ordiplot</code> and hence <code>plot.cca</code> gained argument <code>bg=&lt;colour&gt;</code> that will plot text over non-transparent label using <code>ordilabel</code>.</p>
-<p>Alternatively ordination plots can be built up adding each score type in piped commands. Pipes were available since release 2.5-1, but their use is now improved: <code>ordilabel</code> can be used in a pipe, <code>text</code> can use opaque background label, and <code>text</code> and <code>points</code> function (for <code>ordiplot</code>) gained argument for adjusting arrow lengths similarly as these functions for <code>cca</code>.</p>
-<p><code>text.cca</code> and <code>points.cca</code> were completely redesigned because of the concerns raised in PR <a href="https://github.com/vegandevs/vegan/pull/729" class="external-link">#729</a>. Support function <code>labels.cca</code> now accepts abbreviated names of score types.</p>
 <p>The new features are more extensively described in help pages of <code>plot.cca</code>, <code>ordiplot</code> and <code>biplot.rda</code>.</p>
 </li>
-<li>
-<p><code>text</code> and <code>points</code> functions have arguments <code>labels</code> to rename <code>text</code>and <code>select</code> to show only some <code>points</code> and <code>text</code>. Now these functions are consistent and use first <code>labels</code> and then <code>select</code> using optionally changed labels. Concerns functions <code>ordilabel</code>, <code>ordipointlabel</code>, <code>orditorp</code> as well as <code>text</code> and <code>points</code> functions for <code>cca</code> and friends, <code>decorana</code>, <code>monoMDS</code>, <code>metaMDS</code> and <code>ordiplot</code>.</p>
-<p><code>orditorp</code>, <code>points.cca</code> and <code>text.cca</code> did not accept row names or <code>labels</code> in <code>select</code>. PR <a href="https://github.com/vegandevs/vegan/pull/729" class="external-link">#729</a>.</p>
-<p>Species scores can be added to <code>monoMDS</code> with <code>sppscores</code> function, and now these can be accessed in <code>points</code> and <code>text</code> functions.</p>
-</li>
+<li><p><code>text.ordiplot</code> and hence <code>plot.cca</code> gained argument <code>optimize</code> that will call <code>ordipointlabel</code> to optimize the location of the text to minimize over-writing, but mark the exact score with a point.</p></li>
+<li><p><code>text.ordiplot</code> and hence <code>plot.cca</code> gained argument <code>bg=&lt;colour&gt;</code> that will plot text over non-transparent label using <code>ordilabel</code>.</p></li>
+<li><p>Alternatively ordination plots can be built up adding each score type in piped commands. Pipes were available since <strong>vegan</strong> 2.5-1, but their use is now improved: <code>ordilabel</code> can be used in a pipe, <code>text</code> can use opaque background label, and <code>text</code> and <code>points</code> function (for <code>ordiplot</code>) gained argument for adjusting arrow lengths similarly as in <code>cca</code>.</p></li>
+<li><p><code>text.cca</code> and <code>points.cca</code> were completely redesigned because of the concerns raised in PR <a href="https://github.com/vegandevs/vegan/pull/729" class="external-link">#729</a>. Support function <code>labels.cca</code> now accepts abbreviated names of score types.</p></li>
+<li><p><code>text</code> functions for ordination graphics have arguments <code>labels</code> to rename <code>text</code>and <code>select</code> to show only some items. Now these functions are consistent and use first <code>select</code> and then <code>labels</code> for the selected subset. Concerns functions <code>ordilabel</code>, <code>ordipointlabel</code>, <code>orditorp</code> as well as <code>text</code> functions for <code>cca</code> and friends, <code>decorana</code>, <code>monoMDS</code>, <code>metaMDS</code> and <code>ordiplot</code>. See issue <a href="https://github.com/vegandevs/vegan/pull/730" class="external-link">#730</a>.</p></li>
+<li><p><code>orditorp</code>, <code>points.cca</code> and <code>text.cca</code> did not accept row names or <code>labels</code> in <code>select</code>. PR <a href="https://github.com/vegandevs/vegan/pull/729" class="external-link">#729</a>.</p></li>
+<li><p>Species scores can be added to <code>monoMDS</code> with <code>sppscores</code> function, and now these can be accessed in <code>points</code> and <code>text</code> functions.</p></li>
 <li><p><code>ordipointlabel</code> can be used in pipe. Function gained argument <code>label</code> that allows changing plotted text, and a function <code>labels</code> that return the current labels. The optimization rules were changed to give a slight preference for putting labels outwards from origin but avoiding corner positions.</p></li>
 <li><p><code>orditorp</code> can be used in pipe.</p></li>
+</ul></div>
+<div class="section level3">
+<h3 id="new-features-in-other-functions-2-7-1">New Features in Other Functions<a class="anchor" aria-label="anchor" href="#new-features-in-other-functions-2-7-1"></a></h3>
+<ul><li><p>Constrained ordination models (<code>cca</code>, <code>rda</code>, <code>dbrda</code>) inform users on completely aliased conditions or constraints, and behave more robustly with these degenerate cases. If a model component (condition, constrained, residual unconstrained) is completely aliased, it still appears in summary table with rank and inertia 0. See <a href="https://stackoverflow.com/questions/79613784/" class="external-link uri">https://stackoverflow.com/questions/79613784/</a> and issue <a href="https://github.com/vegandevs/vegan/issues/682" class="external-link">#682</a>.</p></li>
+<li><p>Robust Aitchison distance uses matrix completion to estimate the missing values (<code>-Inf</code>) that result from log transformation of zeros of the original input data. Earlier we used only above zero values, or in simple Aitchison distance replaced zeros with an arbitrary pseudocount. For matrix completion <strong>vegan</strong> adds new function <code>optspace</code> which also can be used independently. The Robust Aitchison distance is directly evaluated in <code>vegdist</code>, and the needed transformation can be performed in <code>decostand</code>. PR <a href="https://github.com/vegandevs/vegan/pull/667" class="external-link">#667</a>.</p></li>
 <li><p><code>ordiR2step</code> calls current model <code>&lt;model&gt;</code> instead of <code>&lt;none&gt;</code>.</p></li>
-<li><p><code>densityplot.permustats</code> did not know argument <code>observed</code> to control including and showing the observed statistic.</p></li>
 <li><p><code>vegemite</code> and <code>tabasco</code> can now <code>use</code> a factor to show a classification. The factor levels and sites within levels can be reordered to give a diagonal pattern, as default in <code>tabasco</code> and in <code>vegemite</code> with new argument <code>diagonalize = TRUE</code> (defaults <code>FALSE</code>). With the same argument, <code>vegemite</code> can also reorder dendrogram (or tree) to give a diagonal pattern. If <code>coverscale</code> is used, all internal calculations for ordering rows and columns will be based on scaled data.</p></li>
-<li><p><code>make.cepnames</code> was completely re-designed and is much more flexible with enhanced user-control. The function is now based solely on <code>abbreviate</code>.</p></li>
+<li><p><code>make.cepnames</code> was completely re-designed and is much more flexible with enhanced user-control.</p></li>
 <li><p><code>wascores</code> can now calculate (unbiased) weighted standard deviation of weighted averages with argument <code>stdev = TRUE</code>.</p></li>
 <li><p><code>mantel</code>, <code>mrpp</code>, <code>oecosimu</code> and <code>ordiareatest</code> gained <code>summary</code> methods based on <code>summary.permustats</code>.</p></li>
 </ul></div>
 <div class="section level3">
-<h3 id="bug-fixes-2-7-0">Bug Fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-2-7-0"></a></h3>
+<h3 id="bug-fixes-2-7-1">Bug Fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-2-7-1"></a></h3>
 <ul><li><p><code>ordistep</code> never dropped aliased terms.</p></li>
 <li><p><code>permatswap</code> failed to set some null models (<code>swsh_samp</code>, <code>swsh_both</code>, <code>backtrack</code>).</p></li>
+<li><p><code>df.residual.cca</code> ignored conditions (partial component). This influences many diagnostic statistics documented together with <code>cooks.distance.cca</code> and <code>rstandard.cca</code>.</p></li>
+<li><p><code>densityplot.permustats</code> did not know argument <code>observed</code> to display the observed statistic.</p></li>
 </ul></div>
 <div class="section level3">
-<h3 id="deprecated-and-defunct-2-7-0">Deprecated and Defunct<a class="anchor" aria-label="anchor" href="#deprecated-and-defunct-2-7-0"></a></h3>
-<ul><li><p>Disabled use of <code>summary</code> to get ordination scores: use <code>scores</code>! For <code>summary.cca</code> see <a href="https://github.com/vegandevs/vegan/discussions/644" class="external-link">#644</a>.</p></li>
+<h3 id="deprecated-and-defunct-2-7-1">Deprecated and Defunct<a class="anchor" aria-label="anchor" href="#deprecated-and-defunct-2-7-1"></a></h3>
+<ul><li><p><code>adonis</code> is defunct in favour of <code>adonis2</code>. See announcement <a href="https://github.com/vegandevs/vegan/discussions/641" class="external-link">#641</a> for fixing your code.</p></li>
+<li><p>Disabled use of <code>summary</code> to get ordination scores: use <code>scores</code> to get scores! For <code>summary.cca</code> see <a href="https://github.com/vegandevs/vegan/discussions/644" class="external-link">#644</a>.</p></li>
 <li><p>lattice function <code>ordicloud</code> is deprecated. It is still available in CRAN package <strong>vegan3d</strong> (version 1.4-0) as function <code>ordilattice3d</code>.</p></li>
 <li><p>lattice function <code>ordisplom</code> is deprecated: it had bad design and was not very useful.</p></li>
 <li><p>lattice function <code>ordiresids</code> is deprecated: you can access the same items using <code>fitted</code>, <code>residuals</code>, <code>rstandard</code>, <code>rstudent</code> <em>etc</em> and design your own plots.</p></li>
 <li><p><code>summary.decorana</code> is defunct. It did nothing useful, but you can extract the same information with <code>scores</code> and <code>weights</code>.</p></li>
-<li><p><code>orditkplot</code> code was removed, but we try to launch <code><a href="https://rdrr.io/pkg/vegan3d/man/orditkplot.html" class="external-link">vegan3d::orditkplot</a></code> loudly (with a deprecation message to go to <strong>vegan3d</strong>). <em>This is experimental, and we may go to direct error, depending on user experience: please comment!</em></p></li>
-<li><p>relic function <code>vegandocs</code> is officially defunct. Better tools to read <strong>vegan</strong> documentation are <code>browseVignettes("vegan")</code> and <code>news(package="vegan")</code>.</p></li>
+<li><p><code>orditkplot</code> was moved to <strong>vegan3d</strong> package and is defunct in <strong>vegan</strong>.</p></li>
+<li><p>relic function <code>vegandocs</code> is officially defunct. Better tools to read <strong>vegan</strong> documentation are <code>browseVignettes("vegan")</code> and <code>news(package="vegan")</code>. The function was deprecated in <strong>vegan</strong> 2.3-4.</p></li>
 </ul></div>
 </div>
     <div class="section level2">
@@ -357,7 +442,7 @@
 </ul></div>
 <div class="section level3">
 <h3 id="new-features-2-5-3">New Features<a class="anchor" aria-label="anchor" href="#new-features-2-5-3"></a></h3>
-<ul><li><p><code>anosim</code> checks its input to avoid confusing error messages like that reported in <a href="https://stackoverflow.com/questions/52082743/" class="external-link">StackOverflow question 52082743</a>.</p></li>
+<ul><li><p><code>anosim</code> checks its input to avoid confusing error messages like that reported in <a href="https://stackoverflow.com/questions/52082743/" class="external-link uri">https://stackoverflow.com/questions/52082743/</a>.</p></li>
 <li><p>Broken-stick distribution (function <code>bstick</code>) is no longer calculated for distance-based Redundancy Analysis (<code>dbrda</code>) with negative eigenvalues, because it is not clear how this should be done. Now <code>dbrda</code> and <code>capscale</code> are similar with this respect.</p></li>
 <li><p><code>print</code> function for <code>betadisper</code> results gained new argument <code>neigen</code> to select the number of eigenvalues shown. The <code>print</code> is more robust when the number of eigenvalues is lower than the requested <code>neigen</code>.</p></li>
 </ul></div>
@@ -372,11 +457,11 @@
 <h3 id="installation-and-compatibility-2-5-2">Installation and Compatibility<a class="anchor" aria-label="anchor" href="#installation-and-compatibility-2-5-2"></a></h3>
 <ul><li><p>Vegan declares dependence on <strong>R</strong> version 3.2.0. This dependence was not yet noticed in the previous vegan release. However, the generic <code>sigma</code> function was only defined in <strong>R</strong>-3.3.0, and therefore <code>sigma.cca</code> of vegan must be spelt out completely when using <strong>R</strong>-3.2.x. See discussion in issue <a href="https://github.com/vegandevs/vegan/issues/274" class="external-link">#274</a>.</p></li>
 <li><p>CRAN package <a href="https://CRAN.R-project.org/package=klaR" class="external-link">klaR</a> has function <code>rda</code>, and when loaded together with vegan this clashes with vegan <code>rda</code> for Redundancy Analysis. Vegan tries to mitigate the problem. In most cases vegan functions will be used if vegan was loaded after klaR, and an error message is issued if klaR objects are handled with vegan functions. klaR is also tricked to print an informative message if it handles vegan objects. However, vegan namespace can be attached automatically at the start-up and then klaR functions will take precedence. This was reported as issue <a href="https://github.com/vegandevs/vegan/issues/277" class="external-link">#277</a>.</p></li>
-<li><p>Bioconductor package phyloseq has a problem with <code>vegdist</code> function for dissimilarities. The problem can be fixed by re-installing phyloseq from its <em>source package</em>. If you cannot do this, you must either downgrade to vegan version 2.4-6 or wait till Bioconductor binary packages are upgraded. This was reported in <a href="https://stackoverflow.com/questions/49882886/" class="external-link">Stackoverflow</a>, and as vegan issue <a href="https://github.com/vegandevs/vegan/issues/272" class="external-link">#272</a>, and as phyloseq issues <a href="https://github.com/joey711/phyloseq/issues/918" class="external-link">#918</a> and <a href="https://github.com/joey711/phyloseq/issues/921" class="external-link">#921</a>.</p></li>
+<li><p>Bioconductor package phyloseq has a problem with <code>vegdist</code> function for dissimilarities. The problem can be fixed by re-installing phyloseq from its <em>source package</em>. If you cannot do this, you must either downgrade to vegan version 2.4-6 or wait till Bioconductor binary packages are upgraded. This was reported in <a href="https://stackoverflow.com/questions/49882886/" class="external-link uri">https://stackoverflow.com/questions/49882886/</a>, and as vegan issue <a href="https://github.com/vegandevs/vegan/issues/272" class="external-link">#272</a>, and as phyloseq issues <a href="https://github.com/joey711/phyloseq/issues/918" class="external-link">#918</a> and <a href="https://github.com/joey711/phyloseq/issues/921" class="external-link">#921</a>.</p></li>
 </ul></div>
 <div class="section level3">
 <h3 id="bug-fixes-2-5-2">Bug Fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-2-5-2"></a></h3>
-<ul><li><p>Plotting <code>betadisper</code> failed if any of the <code>groups</code> had only one member. Reported in Stackoverflow as <a href="https://stackoverflow.com/questions/50267430/" class="external-link">“Error: Incorrect no.of dimensions” when plotting multivariate data in Vegan</a>.</p></li>
+<ul><li><p>Plotting <code>betadisper</code> failed if any of the <code>groups</code> had only one member. Reported in <a href="https://stackoverflow.com/questions/50267430/" class="external-link uri">https://stackoverflow.com/questions/50267430/</a>.</p></li>
 <li><p>Permutation tests for constrained ordination (<code>anova.cca</code>, <code>permutest.cca</code>) could fail in parallel processing with socket clusters. Socket clusters are always used in Windows and they can also be used in other operating systems when created with <code>makeCluster</code>. See issue <a href="https://github.com/vegandevs/vegan/issues/276" class="external-link">#276</a>.</p></li>
 </ul></div>
 </div>
@@ -437,7 +522,7 @@
 <li><p><code>ordicluster</code> gained option to suppress drawing in plots so that it can be more easily embedded in other functions for calculations.</p></li>
 <li><p><code>as.rad</code> returns the index of included taxa as an attribute.</p></li>
 <li><p>Random rarefaction (function <code>rrarefy</code>) uses compiled C code and is much faster.</p></li>
-<li><p><code>plot</code> of <code>specaccum</code> can draw short horizontal bars to vertical error bars. See StackOverflow question <a href="https://stackoverflow.com/questions/45378751" class="external-link">45378751</a>.</p></li>
+<li><p><code>plot</code> of <code>specaccum</code> can draw short horizontal bars to vertical error bars. See <a href="https://stackoverflow.com/questions/45378751" class="external-link uri">https://stackoverflow.com/questions/45378751</a>.</p></li>
 <li><p><code>decostand</code> gained new standardization methods <code>rank</code> and <code>rrank</code> which replace abundance values by their ranks or relative ranks. See github issue <a href="https://github.com/vegandevs/vegan/issues/225" class="external-link">#225</a>.</p></li>
 <li><p>Clark dissimilarity was added to <code>vegdist</code> (this cannot be calculated with <code>designdist</code>).</p></li>
 <li><p><code>designdist</code> evaluates minimum terms in compiled code, and the function is faster than <code>vegdist</code> also for dissimilarities using minimum terms. Although <code>designdist</code> is usually faster than <code>vegdist</code>, it is numerically less stable, in particular with large data sets.</p></li>
@@ -448,8 +533,8 @@
 </ul></div>
 <div class="section level3">
 <h3 id="bug-fixes-2-5-1">Bug Fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-2-5-1"></a></h3>
-<ul><li><p>Very long <code>Condition()</code> statements (&gt; 500 characters) failed in partial constrained ordination models (<code>cca</code>, <code>rda</code>, <code>dbrda</code>, <code>capscale</code>). The problem was detected in StackOverflow question <a href="https://stackoverflow.com/questions/49249816" class="external-link">49249816</a>.</p></li>
-<li><p>Labels were not adjusted when arrows were rescaled in <code>envfit</code> plots. See StackOverflow question <a href="https://stackoverflow.com/questions/49259747" class="external-link">49259747</a>.</p></li>
+<ul><li><p>Very long <code>Condition()</code> statements (&gt; 500 characters) failed in partial constrained ordination models (<code>cca</code>, <code>rda</code>, <code>dbrda</code>, <code>capscale</code>). The problem was detected in <a href="https://stackoverflow.com/questions/49249816" class="external-link uri">https://stackoverflow.com/questions/49249816</a>.</p></li>
+<li><p>Labels were not adjusted when arrows were rescaled in <code>envfit</code> plots. See <a href="https://stackoverflow.com/questions/49259747" class="external-link uri">https://stackoverflow.com/questions/49259747</a>.</p></li>
 <li><p><code>ordiArrowMul</code> failed if there was only one arrow to be plotted in <code>envfit</code>.</p></li>
 </ul></div>
 <div class="section level3">
@@ -485,7 +570,7 @@
 </ul></div>
 <div class="section level3">
 <h3 id="new-features-2-4-5">New Features<a class="anchor" aria-label="anchor" href="#new-features-2-4-5"></a></h3>
-<ul><li><p><code>ordistep</code> has improved interpretation of <code>scope</code>: if the lower scope is missing, the formula of the starting solution is taken as the lower scope instead of using an empty model. See Stackoverflow question <a href="https://stackoverflow.com/questions/46985029/" class="external-link">46985029</a>.</p></li>
+<ul><li><p><code>ordistep</code> has improved interpretation of <code>scope</code>: if the lower scope is missing, the formula of the starting solution is taken as the lower scope instead of using an empty model. See <a href="https://stackoverflow.com/questions/46985029/" class="external-link uri">https://stackoverflow.com/questions/46985029/</a>.</p></li>
 <li><p><code>fitspecaccum</code> gained new support functions <code>nobs</code> and <code>logLik</code> which allow better co-operation with other packages and functions. See GitHub issue <a href="https://github.com/vegandevs/vegan/issues/250" class="external-link">#250</a>.</p></li>
 <li><p>The “backtracking” null model for community simulation is faster. However, “backtracking” is a biased legacy model that should not be used except in comparative studies.</p></li>
 </ul></div>
@@ -500,7 +585,7 @@
 <div class="section level3">
 <h3 id="bug-fixes-2-4-4">Bug Fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-2-4-4"></a></h3>
 <ul><li><p><code>anova(..., by = "axis")</code> for constrained ordination (<code>cca</code>, <code>rda</code>, <code>dbrda</code>) ignored partial terms in <code>Condition()</code>.</p></li>
-<li><p><code>inertcomp</code> and <code>summary.cca</code> failed if the constrained component was defined, but explained nothing and had zero rank. See StackOverflow: <a href="https://stackoverflow.com/questions/43683699/" class="external-link">R - Error message in doing RDA analysis - vegan package</a>.</p></li>
+<li><p><code>inertcomp</code> and <code>summary.cca</code> failed if the constrained component was defined, but explained nothing and had zero rank. See <a href="https://stackoverflow.com/questions/43683699/" class="external-link uri">https://stackoverflow.com/questions/43683699/</a>.</p></li>
 <li><p>Labels are no longer cropped in the <code>meandist</code> plots.</p></li>
 </ul></div>
 <div class="section level3">
@@ -676,7 +761,7 @@
 <ul><li><p><code>metaMDS</code> and <code>monoMDS</code> could fail if input dissimilarities were huge: in the reported case they were of magnitude 1E85. Fixes issue <a href="https://github.com/vegandevs/vegan/issues/152" class="external-link">#152</a> in Github.</p></li>
 <li><p>Permutations failed if they were defined as <a href="https://CRAN.R-project.org/package=permute" class="external-link">permute</a> control structures in <code>estaccum</code>, <code>ordiareatest</code>, <code>renyiaccum</code> and <code>tsallisaccum</code>. Reported by Dan Gafta (Cluj-Napoca) for <code>renyiaccum</code>.</p></li>
 <li><p><code>rarefy</code> gave false warnings if input was a vector or a single sampling unit.</p></li>
-<li><p>Some extrapolated richness indices in <code>specpool</code> needed the number of doubletons (= number of species occurring in two sampling units), and these failed when only one sampling unit was supplied. The extrapolated richness cannot be estimated from a single sampling unit, but now such cases are handled smoothly instead of failing: observed non-extrapolated richness with zero standard error will be reported. The issue was reported in <a href="https://stackoverflow.com/questions/34027496/" class="external-link">StackOverflow</a>.</p></li>
+<li><p>Some extrapolated richness indices in <code>specpool</code> needed the number of doubletons (= number of species occurring in two sampling units), and these failed when only one sampling unit was supplied. The extrapolated richness cannot be estimated from a single sampling unit, but now such cases are handled smoothly instead of failing: observed non-extrapolated richness with zero standard error will be reported. The issue was reported in <a href="https://stackoverflow.com/questions/34027496/" class="external-link uri">https://stackoverflow.com/questions/34027496/</a>.</p></li>
 </ul></div>
 <div class="section level3">
 <h3 id="new-features-2-3-3">New Features<a class="anchor" aria-label="anchor" href="#new-features-2-3-3"></a></h3>
@@ -710,7 +795,7 @@
 <li><p>Constrained ordination methods <code>cca</code>, <code>rda</code> and <code>capscale</code> treat character variables as factors in analysis, but did not return their centroids for plotting.</p></li>
 <li><p>Recovery of original data in <code>metaMDS</code> when computing WA scores for species would fail if the expression supplied to argument <code>comm</code> was long &amp; got deparsed to multiple strings. <code>metaMDSdist</code> now returns the (possibly modified) data frame of community data <code>comm</code> as attribute <code>"comm"</code> of the returned <code>dist</code> object. <code>metaMDS</code> now uses this to compute the WA species scores for the NMDS. In addition, the deparsed expression for <code>comm</code> is now robust to long expressions. Reported by Richard Telford.</p></li>
 <li><p><code>metaMDS</code> and <code>monoMDS</code> rejected dissimilarities with missing values.</p></li>
-<li><p>Function <code>rarecurve</code> did not check its input and this could cause confusing error messages. Now function checks that input data are integers that can be interpreted as counts on individuals and all sampling units have some species. Unchecked bad inputs were the reason for problems reported in <a href="https://stackoverflow.com/questions/30856909/" class="external-link">Stackoverflow</a>.</p></li>
+<li><p>Function <code>rarecurve</code> did not check its input and this could cause confusing error messages. Now function checks that input data are integers that can be interpreted as counts on individuals and all sampling units have some species. Unchecked bad inputs were the reason for problems reported in <a href="https://stackoverflow.com/questions/30856909/" class="external-link uri">https://stackoverflow.com/questions/30856909/</a>.</p></li>
 </ul></div>
 <div class="section level3">
 <h3 id="new-features-and-functions-2-3-1">New Features and Functions<a class="anchor" aria-label="anchor" href="#new-features-and-functions-2-3-1"></a></h3>
@@ -1092,11 +1177,11 @@
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Jari Oksanen, Gavin L. Simpson, F. Guillaume Blanchet, Roeland Kindt, Pierre Legendre, Peter R. Minchin, R.B. O’Hara, Peter Solymos, M. Henry H. Stevens, Eduard Szoecs, Helene Wagner, Matt Barbour, Michael Bedward, Ben Bolker, Daniel Borcard, Tuomas Borman, Gustavo Carvalho, Michael Chirico, Miquel De Caceres, Sebastien Durand, Heloisa Beatriz Antoniazi Evangelista, Rich FitzJohn, Michael Friendly, Brendan Furneaux, Geoffrey Hannigan, Mark O. Hill, Leo Lahti, Dan McGlinn, Marie-Helene Ouellette, Eduardo Ribeiro Cunha, Tyler Smith, Adrian Stier, Cajo J.F. Ter Braak, James Weedon.</p>
+  <p>Developed by Jari Oksanen, Gavin L. Simpson, F. Guillaume Blanchet, Roeland Kindt, Pierre Legendre, Peter R. Minchin, R.B. O’Hara, Peter Solymos, M. Henry H. Stevens, Eduard Szoecs, Helene Wagner, Matt Barbour, Michael Bedward, Ben Bolker, Daniel Borcard, Tuomas Borman, Gustavo Carvalho, Michael Chirico, Miquel De Caceres, Sebastien Durand, Heloisa Beatriz Antoniazi Evangelista, Rich FitzJohn, Michael Friendly, Brendan Furneaux, Geoffrey Hannigan, Mark O. Hill, Leo Lahti, Cameron Martino, Dan McGlinn, Marie-Helene Ouellette, Eduardo Ribeiro Cunha, Tyler Smith, Adrian Stier, Cajo J.F. Ter Braak, James Weedon.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

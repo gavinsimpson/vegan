@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">vegan</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.7-0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.8-0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -119,7 +119,7 @@
 <span class="r-in"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="cca.html">cca</a></span><span class="op">(</span><span class="va">dune</span> <span class="op">~</span> <span class="va">.</span>, data <span class="op">=</span> <span class="va">dune.env</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Some constraints or conditions were aliased because they were redundant. This</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> can happen if terms are linearly dependent (collinear): ‘Manure^4’</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> can happen if terms are constant or linearly dependent (collinear): ‘Manure^4’</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## defaults to species tolerances</span></span></span>
 <span class="r-in"><span><span class="fu">tolerance</span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span></span>
@@ -203,10 +203,10 @@
 <span class="r-in"><span><span class="va">tol</span> <span class="op">&lt;-</span> <span class="fu">tolerance</span><span class="op">(</span><span class="fu"><a href="decorana.html">decorana</a></span><span class="op">(</span><span class="va">dune</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">colMeans</a></span><span class="op">(</span><span class="va">tol</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      DCA1      DCA2      DCA3      DCA4 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.9817657 0.9249544 0.9444811 0.9821666 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.9817661 0.9249544 0.9444812 0.9821617 </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/apply.html" class="external-link">apply</a></span><span class="op">(</span><span class="va">tol</span>, <span class="fl">2</span>, <span class="va">sd</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      DCA1      DCA2      DCA3      DCA4 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.1977777 0.3204058 0.2646872 0.1210543 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.1977766 0.3204058 0.2646871 0.1210739 </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
@@ -214,11 +214,11 @@
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Jari Oksanen, Gavin L. Simpson, F. Guillaume Blanchet, Roeland Kindt, Pierre Legendre, Peter R. Minchin, R.B. O’Hara, Peter Solymos, M. Henry H. Stevens, Eduard Szoecs, Helene Wagner, Matt Barbour, Michael Bedward, Ben Bolker, Daniel Borcard, Tuomas Borman, Gustavo Carvalho, Michael Chirico, Miquel De Caceres, Sebastien Durand, Heloisa Beatriz Antoniazi Evangelista, Rich FitzJohn, Michael Friendly, Brendan Furneaux, Geoffrey Hannigan, Mark O. Hill, Leo Lahti, Dan McGlinn, Marie-Helene Ouellette, Eduardo Ribeiro Cunha, Tyler Smith, Adrian Stier, Cajo J.F. Ter Braak, James Weedon.</p>
+  <p>Developed by Jari Oksanen, Gavin L. Simpson, F. Guillaume Blanchet, Roeland Kindt, Pierre Legendre, Peter R. Minchin, R.B. O’Hara, Peter Solymos, M. Henry H. Stevens, Eduard Szoecs, Helene Wagner, Matt Barbour, Michael Bedward, Ben Bolker, Daniel Borcard, Tuomas Borman, Gustavo Carvalho, Michael Chirico, Miquel De Caceres, Sebastien Durand, Heloisa Beatriz Antoniazi Evangelista, Rich FitzJohn, Michael Friendly, Brendan Furneaux, Geoffrey Hannigan, Mark O. Hill, Leo Lahti, Cameron Martino, Dan McGlinn, Marie-Helene Ouellette, Eduardo Ribeiro Cunha, Tyler Smith, Adrian Stier, Cajo J.F. Ter Braak, James Weedon.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>
