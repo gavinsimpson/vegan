@@ -27,6 +27,10 @@ for these, but they can be used directly.
 
 ``` r
 # S3 method for class 'cca'
+influence(model, type = c("response", "canoco"),
+    addFit = FALSE, tidy = FALSE, ...)
+
+# S3 method for class 'cca'
 hatvalues(model, ...)
 # S3 method for class 'cca'
 rstandard(model, type = c("response", "canoco"), ...)
@@ -34,22 +38,35 @@ rstandard(model, type = c("response", "canoco"), ...)
 rstudent(model, type = c("response", "canoco"), ...)
 # S3 method for class 'cca'
 cooks.distance(model, type = c("response", "canoco"), ...)
-# S3 method for class 'cca'
-influence(model, type = c("response", "canoco"),
-    addFit = FALSE, tidy = FALSE, ...)
 
 # S3 method for class 'cca'
 sigma(object, type = c("response", "canoco"), ...)
 # S3 method for class 'cca'
-vcov(object, type = "canoco", ...)
+SSD(object, type = c("response", "canoco"), ...)
 # S3 method for class 'cca'
-SSD(object, type = "canoco", ...)
+estVar(object, type = c("response", "canoco"), ...)
+# S3 method for class 'cca'
+vcov(object, type = c("response", "canoco"), ...)
 
 # S3 method for class 'cca'
 qr(x, ...)
 # S3 method for class 'cca'
 df.residual(object, ...)
 ```
+
+## See also
+
+Similar linear mmodel functions
+[`influence.measures`](https://rdrr.io/r/stats/influence.measures.html),
+[`hatvalues`](https://rdrr.io/r/stats/influence.measures.html),
+[`rstandard`](https://rdrr.io/r/stats/influence.measures.html),
+[`rstudent`](https://rdrr.io/r/stats/influence.measures.html),
+[`cooks.distance`](https://rdrr.io/r/stats/influence.measures.html),
+[`sigma`](https://rdrr.io/r/stats/sigma.html),
+[`SSD`](https://rdrr.io/r/stats/SSD.html),
+[`estVar`](https://rdrr.io/r/stats/SSD.html),
+[`vcov`](https://rdrr.io/r/stats/vcov.html),
+[`df.residual`](https://rdrr.io/r/stats/df.residual.html).
 
 ## Arguments
 
@@ -65,7 +82,8 @@ df.residual(object, ...)
 
 - addFit:
 
-  Add fit in working scale to the result.
+  Add fit in working scale to the result when `type="response"` (this is
+  impossible with `type="canoco"`).
 
 - tidy:
 
@@ -160,6 +178,7 @@ Jari Oksanen
 ## Examples
 
 ``` r
+
 data(varespec, varechem)
 mod <- cca(varespec ~ Al + P + K, varechem)
 ## leverage
@@ -317,9 +336,18 @@ coef(mod)
 #> Al  0.007478556 -0.001883637  0.003380774
 #> P  -0.006491081 -0.102189737 -0.022306682
 #> K  -0.006755568  0.015343662  0.017067351
-coef(mod)/sqrt(diag(vcov(mod, type = "canoco")))
+tval <- coef(mod)/sqrt(diag(vcov(mod, type = "canoco")))
+tval
 #>          CCA1      CCA2      CCA3
 #> Al  6.5615451 -1.397643  3.313629
 #> P  -0.4576132 -6.092557 -1.756774
 #> K  -2.0862129  4.007159  5.887926
+## P-values
+zapsmall(2 * pt(abs(tval), df.residual(mod), lower.tail=FALSE))
+#>         CCA1      CCA2      CCA3
+#> Al 0.0000022 0.1775320 0.0034662
+#> P  0.6521628 0.0000059 0.0942569
+#> K  0.0499751 0.0006918 0.0000093
+plot(mod, scaling = "sites", display = c("lc", "reg"))
+title(main = "Linear Combination and Regression Scores")
 ```

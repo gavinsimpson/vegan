@@ -15,10 +15,11 @@ and \\P\\-value.
 
 ``` r
 ordistep(object, scope, direction = c("both", "backward", "forward"),
-   Pin = 0.05, Pout = 0.1, permutations = how(nperm = 199), steps = 50,
-   trace = TRUE, ...)
+  Pin = 0.05, Pout = 0.1, permutations = how(nperm = 199), steps = 50,
+  trace = TRUE, test = c("permutation", "F"), ...)
 ordiR2step(object, scope, Pin = 0.05, R2scope = TRUE,
-   permutations = how(nperm = 499), trace = TRUE, R2permutations = 1000, ...)
+  permutations = how(nperm = 499), trace = TRUE, R2permutations = 1000,
+  test = c("permutation", "F"),  ...)
 ```
 
 ## Arguments
@@ -82,6 +83,13 @@ ordiR2step(object, scope, Pin = 0.05, R2scope = TRUE,
   Number of permutations used in the estimation of adjusted \\R^2\\ for
   [`cca`](https://vegandevs.github.io/vegan/reference/cca.md) using
   [`RsquareAdj`](https://vegandevs.github.io/vegan/reference/RsquareAdj.md).
+
+- test:
+
+  Use `"permutation"` test or parametric `"F"` test in
+  [`anova.cca`](https://vegandevs.github.io/vegan/reference/anova.cca.md).
+  `"F"` can be only used with
+  [`rda`](https://vegandevs.github.io/vegan/reference/cca.md) models.
 
 - ...:
 
@@ -197,9 +205,9 @@ mod <- ordistep(mod0, scope = formula(mod1))
 #>              Df    AIC      F Pr(>F)   
 #> + Management  3 87.082 2.8400  0.005 **
 #> + Moisture    3 87.707 2.5883  0.005 **
-#> + Manure      4 89.232 1.9539  0.010 **
-#> + A1          1 89.591 1.9217  0.045 * 
-#> + Use         2 91.032 1.1741  0.245   
+#> + Manure      4 89.232 1.9539  0.005 **
+#> + A1          1 89.591 1.9217  0.060 . 
+#> + Use         2 91.032 1.1741  0.310   
 #> ---
 #> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 #> 
@@ -212,24 +220,24 @@ mod <- ordistep(mod0, scope = formula(mod1))
 #> 
 #>            Df    AIC      F Pr(>F)   
 #> + Moisture  3 85.567 1.9764  0.005 **
-#> + Manure    3 87.517 1.3902  0.130   
-#> + A1        1 87.424 1.2965  0.245   
-#> + Use       2 88.284 1.0510  0.435   
+#> + Manure    3 87.517 1.3902  0.140   
+#> + A1        1 87.424 1.2965  0.270   
+#> + Use       2 88.284 1.0510  0.395   
 #> ---
 #> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 #> 
 #> Step: dune ~ Management + Moisture 
 #> 
 #>              Df    AIC      F Pr(>F)   
-#> - Moisture    3 87.082 1.9764  0.015 * 
-#> - Management  3 87.707 2.1769  0.010 **
+#> - Moisture    3 87.082 1.9764  0.010 **
+#> - Management  3 87.707 2.1769  0.005 **
 #> ---
 #> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 #> 
 #>          Df    AIC      F Pr(>F)
-#> + Manure  3 85.762 1.1225   0.31
-#> + A1      1 86.220 0.8359   0.62
-#> + Use     2 86.842 0.8027   0.64
+#> + Manure  3 85.762 1.1225  0.305
+#> + A1      1 86.220 0.8359  0.520
+#> + Use     2 86.842 0.8027  0.695
 #> 
 mod
 #> 
@@ -266,28 +274,28 @@ ordistep(mod0, scope = formula(mod1), direction="forward")
 #>              Df    AIC      F Pr(>F)   
 #> + Management  3 87.082 2.8400  0.005 **
 #> + Moisture    3 87.707 2.5883  0.005 **
-#> + Manure      4 89.232 1.9539  0.010 **
-#> + A1          1 89.591 1.9217  0.035 * 
-#> + Use         2 91.032 1.1741  0.255   
+#> + Manure      4 89.232 1.9539  0.005 **
+#> + A1          1 89.591 1.9217  0.030 * 
+#> + Use         2 91.032 1.1741  0.250   
 #> ---
 #> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 #> 
 #> Step: dune ~ Management 
 #> 
 #>            Df    AIC      F Pr(>F)  
-#> + Moisture  3 85.567 1.9764  0.020 *
-#> + Manure    3 87.517 1.3902  0.080 .
-#> + A1        1 87.424 1.2965  0.225  
-#> + Use       2 88.284 1.0510  0.385  
+#> + Moisture  3 85.567 1.9764  0.015 *
+#> + Manure    3 87.517 1.3902  0.115  
+#> + A1        1 87.424 1.2965  0.215  
+#> + Use       2 88.284 1.0510  0.395  
 #> ---
 #> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 #> 
 #> Step: dune ~ Management + Moisture 
 #> 
 #>          Df    AIC      F Pr(>F)
-#> + Manure  3 85.762 1.1225  0.285
-#> + A1      1 86.220 0.8359  0.565
-#> + Use     2 86.842 0.8027  0.730
+#> + Manure  3 85.762 1.1225  0.315
+#> + A1      1 86.220 0.8359  0.600
+#> + Use     2 86.842 0.8027  0.650
 #> 
 #> 
 #> Call: rda(formula = dune ~ Management + Moisture, data = dune.env)

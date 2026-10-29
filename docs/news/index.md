@@ -33,12 +33,33 @@
 - `adonis2` can have `Condition` in formula allowing similar analysis of
   partial models as in `dbrda`.
 
+- `anova.cca` calculates parametric *F*-test as an alternative to
+  permutation test. The parametric *F*-test is similar as the
+  “spherical” test in `anova.mlm` for multivariate linear models.
+  Parametric tests and permutation tests have been consistent in
+  preliminary comparisons for `rda`. Tests were inconsistent with `cca`,
+  and parametric test is only enabled for `rda`, and it cannot be
+  calculated for distance-based ordination (`dbrda`, `capscale`).
+
+  `add1`, `drop1`, `ordistep`and `ordiR2step` can use parametric
+  *F*-tests with `rda` models.
+  [`stats::step`](https://rdrr.io/r/stats/step.html) was able to use
+  them automatically.
+
+- `ordisurf` can plot coloured surfaces (or “filled contours”) with
+  argument `what = "surface"`. The perspective plots with
+  `plot.ordisurf(..., what = "persp")` can be coloured by height if a
+  colour palette is given.
+
 - `plot.envfit` can use criterion `r2.min` for lower threshold of
-  $R^{2}$ of displayed variables. Both `p.max` and `r2.min` must be
+  $`R^2`$ of displayed variables. Both `p.max` and `r2.min` must be
   satisfied for displayed items.
 
   `plot.envfit` can optimize the location of text labels for factors and
   vectors (arrows).
+
+- `envfit` gained new support function `names` that can replace the
+  variable names in the result object.
 
 - `plot.radfit.frame` uses now base graphics instead of **lattice**.
 
@@ -47,13 +68,6 @@
   used bounding box is shown with argument `bg = <colour>`. The function
   is also invoked from `plot` and `text` functions for ordination
   results with argument `optimize = TRUE`.
-
-  `ordipointlabel` gained argument `points`. Setting `optimize=FALSE`
-  suppresses drawing points which is useful if there already are points
-  (or arrowheads) in the graph.
-
-- Position of arrow labels is improved with `optimize=TRUE` in
-  ordination graphics.
 
 - `varpart` labels the sources of variation by the full definition of
   the term in plots, but switches to `X1` *etc* if the full name does
@@ -64,26 +78,40 @@
   [\#752](https://github.com/vegandevs/vegan/issues/752). Earlier it was
   possible to use these only *via* `hiersimu`.
 
-- parallel processing is more robust on Windows, and also closes
-  internally opened socket clusters after error in functions. Pull
-  request [\#772](https://github.com/vegandevs/vegan/issues/772).
-
 - `decorana` uses stricter convergence criteria similarly as most other
   **vegan** functions. Usually effects can be seen only in the last
   decimals.
 
+- `qqnorm.permustats` gained argument `which` to select the displayed
+  statistic. Earlier it refused to handle `permustats` results with
+  several statistics. The function also gained argument `x` for user
+  supplied theoretical quantiles. With this it can show permutation
+  values against other reference distributions than standard Normal.
+
+- `SSD.cca` and `vcov.cca` can return `type = "response"`. Earlier they
+  only knew `type = "canoco"`. Added `estVar.cca`.
+
 ### Bug Fixes
 
-- `ordihull` and `ordiellipse` (and hence `ordiareatest`) queried and
-  set graphical parameters also when nothing was drawn. Issue
-  [\#774](https://github.com/vegandevs/vegan/issues/774).
+- `anova` for `prc` result failed with `by` argument if `prc` was called
+  with expressions instead of plain names, for instance with
+  `prc(t(spe), md$treatment, md$time)`. Issue
+  [\#797](https://github.com/vegandevs/vegan/issues/797), PR
+  [\#798](https://github.com/vegandevs/vegan/pull/798).
 
-- `mantel` and `mantel.partial` returned permutation results as
-  one-column matrix instead of a vector in some parallelization schemes.
-  Issue [\#773](https://github.com/vegandevs/vegan/issues/773).
+- `anova.cca` and `permutest.cca` failed in several cases with
+  `permutations = 0`.
 
-- `cascadeKM` failed in parallel processing on Windows. Issue
-  [\#771](https://github.com/vegandevs/vegan/issues/771).
+- `anova.cca(..., by = "axis")` inflated *F*-values after first axis.
+  Similar inflation was used both in the test statistic and permutation,
+  and *P*-values are unchanged.
+
+- `anova.cca(<list of models>)` output table did not adopt headers to
+  `rda` or distance-based methods. Issue
+  [\#801](https://github.com/vegandevs/vegan/issues/801).
+
+- `adonis2` did not apply correctly Lingoes and Caillez adjustments of
+  input dissimilarities.
 
 ### Deprecated, Defunct and Resurrected
 
@@ -108,6 +136,109 @@
   `renyiaccum` (also handling `tsallisaccum`). The base `plot` functions
   are simpler, but the original **lattice** implementations can be
   reproduced with functions in the CRAN package **ggvegan**.
+
+## vegan 2.7-6
+
+CRAN release: 2026-08-31
+
+### New Features
+
+- Implemented *weighted* spatial median and used them in
+  `ordispider(..., spiders = "median")`. These will be automatically
+  used in weighted ordinations (correspondence analysis *etc*) where a
+  warning was issued on ignored weights earlier.
+
+- `text.decorana` is now based on `ordiplot` and knows arguments such as
+  `optimize` to improve text location and `bg` to plot text on opaque
+  background. These features were already available in `plot.decorana`
+  and `text` used in pipe.
+
+### Bug Fixes
+
+- `ordisurf` always plotted contours, although documented behaviour was
+  to skip contours with `select=TRUE` (default) when effective degrees
+  of freedom are nearly zero. Polynomial models invoked by setting
+  `knots` 0, 1 or 2 failed in `plot.ordisurf`. The name of the variable
+  used as the title of the graph was lost with formula interface.
+
+- `make.cepnames` could make duplicated names. Now makes unique names
+  and warns users on the naming decisions. Issue
+  [\#787](https://github.com/vegandevs/vegan/issues/787).
+
+- `summary.isomap` failed. Bug was introduced in vegan 2.6-6.
+  [PR](https://github.com/vegandevs/vegan/pull/789)
+  [\#789](https://github.com/vegandevs/vegan/issues/789).
+
+- `tabasco` failed with `dendrogram()` input, see issue
+  [\#792](https://github.com/vegandevs/vegan/issues/792). In addition,
+  `tabasco` uses more consistent policy. Argument `use` takes
+  precedence, and explicit site ordering (`site.ind`) together with
+  `use` is an error. On the other hand, `sp.ind` takes precedence over
+  default species ordering of `use`. Species dendrogram can be added to
+  all `use` alternatives.
+
+- Fix CRAN check NOTE on deprecated features in very old code
+  (`clamtest`, `showvarparts`).
+
+## vegan 2.7-5
+
+CRAN release: 2026-05-25
+
+### Startup
+
+- CRAN releases no longer print startup message “This is vegan…”.
+
+### New Features
+
+- parallel processing is more robust on Windows, and also closes
+  internally opened socket clusters after abnormal termination. Pull
+  request [\#772](https://github.com/vegandevs/vegan/issues/772).
+
+- `ordipointlabel` gained argument `points`. Setting `points=FALSE`
+  suppresses drawing points which is useful if there already are points
+  (or arrow heads) in the graph.
+
+- Position of arrow labels is improved with `optimize=TRUE` in
+  ordination graphics.
+
+- `scores(..., tidy = TRUE)` for ordination results are now compatible
+  with related `ggvegan::fortify` functions, but do not change dimension
+  names and add column `weight` when appropriate. This also concerns
+  default method of `scores` and `wcmdscale` which earlier could not be
+  plotted with **ggvegan**.
+
+### Bug Fixes
+
+- `ordistep` and `ordiR2step` could not be embedded in other functions
+  due to scoping issues. See PR
+  [\#786](https://github.com/vegandevs/vegan/pull/786) and issue
+  [\#785](https://github.com/vegandevs/vegan/issues/785).
+
+- `scores` for the `envfit` results never returned `tidy` data frames
+  although they were prepared.
+
+- `ordihull` and `ordiellipse` (and hence `ordiareatest`) queried and
+  set graphical parameters also when nothing was drawn. Issue
+  [\#774](https://github.com/vegandevs/vegan/issues/774).
+
+- `mantel` and `mantel.partial` returned permutation results as
+  one-column matrix instead of a vector in some parallelization schemes.
+  Issue [\#773](https://github.com/vegandevs/vegan/issues/773).
+
+- `cascadeKM` failed in parallel processing on Windows. Issue
+  [\#771](https://github.com/vegandevs/vegan/issues/771).
+
+- `plot.envfit` drew arrows wrongly when making a new plot *and* moving
+  the bunch of arrows from the origin (*i.e.* with arguments `add=FALSE`
+  and `at != c(0,0)` together).
+
+- Text labels were dropped from zero-length arrows.
+
+### Deprecated and Resurrected
+
+- `plot.renyi` was prematurely deprecated in release 2.7-3: its
+  replacement was not included in the **ggvegan** 0.2.1 release. Now it
+  is resurrected as a supported function.
 
 ## vegan 2.7-3
 
@@ -897,7 +1028,7 @@ CRAN release: 2022-04-17
   [\#497](https://github.com/vegandevs/vegan/issues/497).
 
 - `metaMDS` adopted a more user-friendly policy, and `trymax` will
-  always be the maximum number of tries. See dicussion in
+  always be the maximum number of tries. See discussion in
   <https://stackoverflow.com/questions/66748605/>.
 
 - `adonis2` accepts `strata`. `adonis2` is the new main function that
@@ -2247,7 +2378,7 @@ CRAN release: 2014-11-17
   The argument can be an integer giving the number of parallel
   processes. In unix-alikes (Mac OS, Linux) this will launch
   `"multicore"` processing and in Windows it will set up `"snow"`
-  clusters as desribed in the documentation of the parallel package. If
+  clusters as described in the documentation of the parallel package. If
   `option` `"mc.cores"` is set to an integer \> 1, this will be used to
   automatically start parallel processing. Finally, the argument can
   also be a previously set up `"snow"` cluster which will be used both
@@ -2260,7 +2391,7 @@ CRAN release: 2014-11-17
   permutation statistics: `adonis`, `anosim`, `anova.cca` (and
   `permutest.cca`), `mantel` (and `mantel.partial`), `mrpp`,
   `ordiareatest`, `permutest.betadisper` and `simper`. In addition,
-  `bioenv` can compare several candidate sets of models in paralle,
+  `bioenv` can compare several candidate sets of models in parallel,
   `metaMDS` can launch several random starts in parallel, and `oecosimu`
   can evaluate test statistics for several null models in parallel.
 
@@ -2277,7 +2408,7 @@ CRAN release: 2014-11-17
   See
   [`help(permutations)`](https://vegandevs.github.io/vegan/reference/permutations.md)
   for a brief introduction on permutations in vegan, and permute package
-  for the full documention. The vignette of the permute package can be
+  for the full documentation. The vignette of the permute package can be
   read from vegan with command `vegandocs("permutations")`.
 
   The following functions use the
@@ -2344,7 +2475,7 @@ CRAN release: 2014-11-17
   methods), `permutest.betadisper`, and `protest`.
 
 - `stressplot` functions display the ordination distances at given
-  number of dimensions against original distances. The method functins
+  number of dimensions against original distances. The method functions
   are similar to `stressplot` for `metaMDS`, and always use the inherent
   distances of each ordination method. The functions are available for
   the results `capscale`, `cca`, `princomp`, `prcomp`, `rda`, and
@@ -2901,7 +3032,7 @@ CRAN release: 2012-03-03
 
 - Some constrained ordination methods and their support functions are
   more robust in border cases (completely aliased effects, saturated
-  models, user requests for non-existng scores etc). Concerns
+  models, user requests for non-existing scores etc). Concerns
   `capscale`, `ordistep`, `varpart`, `plot` function for constrained
   ordination, and `anova(<cca.object>, by = "margin")`.
 

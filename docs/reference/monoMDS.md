@@ -100,11 +100,11 @@ text(x, display = "sites", labels, choices = c(1,2),
 - tidy:
 
   Return scores that are compatible with
-  [ggplot2](https://CRAN.R-project.org/package=ggplot2): all scores are
+  [ggvegan](https://CRAN.R-project.org/package=ggvegan): all scores are
   in a single `data.frame`, score type is identified by factor variable
-  `code` (`"sites"` or `"species"`), the names by variable `label`.
-  These scores are incompatible with conventional `plot` functions, but
-  they can be used in ggplot2.
+  `code` (`"sites"` or `"species"`, if available), the names by variable
+  `label`. These scores are incompatible with conventional `plot`
+  functions, but they can be used in ggvegan and ggplot2.
 
 - choices:
 
@@ -143,7 +143,7 @@ but `monoMDS` offers the following unique combination of features:
   tied to their maximum value of one. Breaking ties allows these points
   to be at different distances and can help in recovering very long
   coenoclines (gradients). Functions in the
-  [smacof](https://CRAN.R-project.org/package=smacof) package also hav
+  [smacof](https://CRAN.R-project.org/package=smacof) package also have
   adequate tie treatment.
 
 - Handles missing values in a meaningful way.
@@ -305,9 +305,9 @@ m
 #> 20 points, dissimilarity ‘bray’, call ‘vegdist(x = dune)’
 #> 
 #> Dimensions: 2 
-#> Stress:     0.07626801 
+#> Stress:     0.07626804 
 #> Stress type 1, weak ties
 #> Scores scaled to unit root mean square, rotated to principal components
-#> Stopped after 133 iterations: Stress nearly unchanged (ratio > sratmax)
+#> Stopped after 65 iterations: Stress nearly unchanged (ratio > sratmax)
 plot(m)
 ```

@@ -70,10 +70,11 @@ scores(x, choices = NA, display = "sites", tidy = FALSE, ...)
 - tidy:
 
   Return scores that are compatible with
-  [ggplot2](https://CRAN.R-project.org/package=ggplot2): scores are in a
+  [ggvegan](https://CRAN.R-project.org/package=ggvegan): scores are in a
   [`data.frame`](https://rdrr.io/r/base/data.frame.html), score type is
-  in the variable `score` labelled as `"sites"`, weights in variable
-  `weigth`, and names in variable `label`.
+  in the variable `score` labelled as `"sites"` and `"species"` (if
+  available), weights in variable `weigth`, and names in variable
+  `label`.
 
 - ...:
 
@@ -133,7 +134,7 @@ containing the components that are mostly similar as in
 - ac, add:
 
   additive constant and adjustment method used to avoid negative
-  eigenvalues. These are `NA` and `FALSE` if no adjustment was done.
+  eigenvalues. These are `0` and `FALSE` if no adjustment was done.
 
 - GOF:
 
@@ -196,13 +197,13 @@ ca <- cca(dune)
 ## Eigevalues are numerically similar
 ca$CA$eig - ord$eig
 #>           CA1           CA2           CA3           CA4           CA5 
-#> -5.551115e-16 -1.609823e-15 -7.216450e-16  8.326673e-17 -5.551115e-17 
+#> -4.440892e-16  3.330669e-16  3.330669e-16 -3.608225e-16  1.942890e-16 
 #>           CA6           CA7           CA8           CA9          CA10 
-#> -4.163336e-17 -1.387779e-16 -1.942890e-16  1.249001e-16  1.387779e-17 
+#>  8.326673e-17 -2.498002e-16 -1.110223e-16 -5.551115e-17  9.714451e-17 
 #>          CA11          CA12          CA13          CA14          CA15 
-#>  1.110223e-16  6.245005e-17  4.857226e-17 -1.734723e-17  1.734723e-18 
+#>  9.714451e-17  6.245005e-17  6.938894e-17  3.469447e-18 -3.295975e-17 
 #>          CA16          CA17          CA18          CA19 
-#>  3.469447e-18 -6.938894e-18  0.000000e+00  4.553649e-17 
+#> -3.469447e-18  0.000000e+00 -3.382711e-17  4.033232e-17 
 ## Configurations are similar when site scores are scaled by
 ## eigenvalues in CA
 procrustes(ord, ca, choices=1:19, scaling = "sites")
@@ -211,7 +212,7 @@ procrustes(ord, ca, choices=1:19, scaling = "sites")
 #> procrustes(X = ord, Y = ca, choices = 1:19, scaling = "sites") 
 #> 
 #> Procrustes sum of squares:
-#> -4.263e-14 
+#>     0 
 #> 
 ## IGNORE_RDIFF_END
 

@@ -52,7 +52,7 @@ ord <- metaMDS(varespec)
 #> Run 4 stress 0.1962451 
 #> Run 5 stress 0.1974408 
 #> Run 6 stress 0.1948413 
-#> Run 7 stress 0.2143612 
+#> Run 7 stress 0.2143613 
 #> Run 8 stress 0.2032569 
 #> Run 9 stress 0.2382234 
 #> Run 10 stress 0.18584 
@@ -63,7 +63,7 @@ ord <- metaMDS(varespec)
 #> Run 13 stress 0.1985584 
 #> Run 14 stress 0.1969805 
 #> Run 15 stress 0.2048307 
-#> Run 16 stress 0.1955836 
+#> Run 16 stress 0.1955837 
 #> Run 17 stress 0.2075787 
 #> Run 18 stress 0.248631 
 #> Run 19 stress 0.2397793 
@@ -247,15 +247,14 @@ anova(mod, by = "margin")
 #> ---
 #> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 ## Plot only sample plots, use different symbols and draw SD ellipses 
-## for Managemenet classes
+## for Management classes
 plot(mod, display = "sites", type = "n")
 with(dune.env, points(mod, disp = "si", pch = as.numeric(Management)))
 with(dune.env, legend("topleft", levels(Management), pch = 1:4,
   title = "Management"))
 with(dune.env, ordiellipse(mod, Management, label = TRUE))
-## add fitted surface of diversity to the model
+## add fitted surface and direction arrow of diversity to the model
 ordisurf(mod, diversity(dune), add = TRUE)
-
 #> 
 #> Family: gaussian 
 #> Link function: identity 
@@ -267,6 +266,8 @@ ordisurf(mod, diversity(dune), add = TRUE)
 #> 1.28  total = 2.28 
 #> 
 #> REML score: 3.00623     
+plot(envfit(mod ~ diversity(dune), permutations=0))
+
 ### Example 3: analysis of dissimilarites a.k.a. non-parametric
 ### permutational anova
 adonis2(dune ~ ., dune.env, by = "margin")

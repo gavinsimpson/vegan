@@ -86,7 +86,7 @@ of these arrows. NB., `ordiArrowTextXY` does not draw labels; it simply
 returns coordinates at which the labels should be drawn for use with
 another function, such as
 [`text`](https://rdrr.io/r/graphics/text.html). The arrow will point to
-the midpoint of the text bouding box. Several ordination `plot` and
+the midpoint of the text bounding box. Several ordination `plot` and
 `text` functions have argument `optimize` which will override this
 location.
 
@@ -134,5 +134,6 @@ Jari Oksanen, with modifications by Gavin L. Simpson
 
     ## Handling of ordination objects directly
     mul2 <- ordiArrowMul(ord, display = "bp", fill = 0.8)
-    stopifnot(all.equal(mul, mul2))
+    all.equal(mul, mul2)
+#> [1] TRUE
 ```

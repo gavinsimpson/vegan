@@ -24,7 +24,10 @@ plot(x, choices = c(1,2), labels, arrow.mul, at = c(0,0),
    axis = FALSE, p.max = NULL, r2.min = NULL, col = "blue", bg,
    optimize = FALSE, cex = 1, add = TRUE, ...)
 # S3 method for class 'envfit'
-scores(x, display, choices, arrow.mul=1, tidy = FALSE, ...)
+scores(x, display = c("vectors", "factors"), choices,
+   arrow.mul=1, tidy = FALSE, ...)
+# S3 method for class 'envfit'
+names(x) <- value
 vectorfit(X, P, permutations = 0, strata = NULL, w, ...)
 factorfit(X, P, permutations = 0, strata = NULL, w, ...)
 ```
@@ -85,20 +88,33 @@ factorfit(X, P, permutations = 0, strata = NULL, w, ...)
 - tidy:
 
   Return scores that are compatible with
-  [ggplot2](https://CRAN.R-project.org/package=ggplot2): all scores are
+  [ggvegan](https://CRAN.R-project.org/package=ggvegan): all scores are
   in a single `data.frame`, score type is identified by factor variable
-  `scores` (`"vectors"` or `"factors"`), the names by variable `label`.
+  `type` (`"Vector"` or `"Centroid"`), the names by variable `label`.
   These scores are incompatible with conventional `plot` functions, but
-  they can be used in ggplot2.
+  they can be used in ggvegan and ggplot2.
 
 - labels:
 
   Change plotting labels. The argument should be a list with elements
   `vectors` and `factors` which give the new plotting labels. If either
-  of these elements is omitted, the default labels will be used. If
-  there is only one type of elements (only `vectors` or only `factors`),
-  the labels can be given as vector. The default labels can be displayed
-  with `labels` command.
+  of these elements is omitted or `NULL`, the default labels will be
+  used. If there is only one type of elements (only `vectors` or only
+  `factors`), the labels can be given as vector. The default labels can
+  be displayed with `labels` command. The argument changes names only in
+  the `plot` and the fitted object is unchanged; use `names` to change
+  the names in the object.
+
+- value:
+
+  Names of environmental variables used to replace the names in the
+  result object. This should be a list with items `factors` and
+  `vectors`, or it can be vector of names if only factors or vectors
+  were calculated. If either `factors` or `vectors` is omitted or
+  `NULL`, names will not be replaced for that item. The replacement
+  function `names` will permanently change the result object; use
+  argument `labels` in `plot` to change names in the graph and keep the
+  result object unchanged.
 
 - arrow.mul:
 
@@ -322,57 +338,55 @@ A better alternative to vectors may be
 
 ``` r
 data(varespec, varechem)
-library(MASS)
 ord <- metaMDS(varespec)
 #> Square root transformation
 #> Wisconsin double standardization
 #> Run 0 stress 0.1843196 
-#> Run 1 stress 0.18458 
-#> ... Procrustes: rmse 0.04934733  max resid 0.157477 
-#> Run 2 stress 0.1948413 
-#> Run 3 stress 0.2126568 
-#> Run 4 stress 0.196245 
-#> Run 5 stress 0.2067742 
-#> Run 6 stress 0.2143612 
-#> Run 7 stress 0.18458 
-#> ... Procrustes: rmse 0.04935237  max resid 0.1575002 
-#> Run 8 stress 0.2088293 
-#> Run 9 stress 0.1825658 
+#> Run 1 stress 0.2311468 
+#> Run 2 stress 0.18458 
+#> ... Procrustes: rmse 0.04937266  max resid 0.1576108 
+#> Run 3 stress 0.2109613 
+#> Run 4 stress 0.1976151 
+#> Run 5 stress 0.18584 
+#> Run 6 stress 0.1948413 
+#> Run 7 stress 0.1825658 
 #> ... New best solution
-#> ... Procrustes: rmse 0.04163799  max resid 0.1518664 
-#> Run 10 stress 0.1955836 
-#> Run 11 stress 0.2296578 
-#> Run 12 stress 0.1852397 
-#> Run 13 stress 0.2174195 
-#> Run 14 stress 0.1974406 
-#> Run 15 stress 0.1967393 
-#> Run 16 stress 0.18458 
-#> Run 17 stress 0.2109853 
-#> Run 18 stress 0.1948413 
-#> Run 19 stress 0.2251281 
-#> Run 20 stress 0.1869637 
-#> *** Best solution was not repeated -- monoMDS stopping criteria:
-#>     17: stress ratio > sratmax
-#>      3: scale factor of the gradient < sfgrmin
+#> ... Procrustes: rmse 0.04163296  max resid 0.1518378 
+#> Run 8 stress 0.1825658 
+#> ... Procrustes: rmse 9.939849e-06  max resid 3.346604e-05 
+#> ... Similar to previous best
+#> Run 9 stress 0.2143613 
+#> Run 10 stress 0.2087946 
+#> Run 11 stress 0.1967393 
+#> Run 12 stress 0.2048307 
+#> Run 13 stress 0.2414246 
+#> Run 14 stress 0.2032569 
+#> Run 15 stress 0.2048307 
+#> Run 16 stress 0.2433929 
+#> Run 17 stress 0.1843196 
+#> Run 18 stress 0.1948414 
+#> Run 19 stress 0.1869637 
+#> Run 20 stress 0.2032569 
+#> *** Best solution repeated 1 times
 (fit <- envfit(ord, varechem, perm = 999))
 #> 
 #> ***VECTORS
 #> 
 #>             NMDS1    NMDS2     r2 Pr(>r)    
-#> N        -0.05725 -0.99836 0.2537  0.052 .  
-#> P         0.61968  0.78486 0.1938  0.101    
-#> K         0.76639  0.64238 0.1809  0.114    
-#> Ca        0.68514  0.72842 0.4119  0.006 ** 
-#> Mg        0.63247  0.77459 0.4270  0.004 ** 
-#> S         0.19132  0.98153 0.1752  0.125    
-#> Al       -0.87164  0.49015 0.5269  0.001 ***
-#> Fe       -0.93607  0.35180 0.4451  0.001 ***
-#> Mn        0.79871 -0.60172 0.5231  0.002 ** 
-#> Zn        0.61754  0.78654 0.1879  0.117    
-#> Mo       -0.90305  0.42953 0.0609  0.537    
-#> Baresoil  0.92495 -0.38008 0.2508  0.045 *  
-#> Humdepth  0.93286 -0.36024 0.5200  0.002 ** 
-#> pH       -0.64802  0.76162 0.2308  0.068 .  
+#> N        -0.05726 -0.99836 0.2537  0.043 *  
+#> P         0.61968  0.78486 0.1938  0.090 .  
+#> K         0.76640  0.64236 0.1809  0.120    
+#> Ca        0.68515  0.72840 0.4119  0.004 ** 
+#> Mg        0.63248  0.77458 0.4270  0.003 ** 
+#> S         0.19133  0.98153 0.1752  0.120    
+#> Al       -0.87163  0.49016 0.5269  0.002 ** 
+#> Fe       -0.93606  0.35185 0.4451  0.004 ** 
+#> Mn        0.79871 -0.60171 0.5231  0.001 ***
+#> Zn        0.61753  0.78654 0.1879  0.111    
+#> Mo       -0.90307  0.42950 0.0609  0.507    
+#> Baresoil  0.92493 -0.38013 0.2508  0.048 *  
+#> Humdepth  0.93285 -0.36026 0.5200  0.002 ** 
+#> pH       -0.64801  0.76163 0.2308  0.059 .  
 #> ---
 #> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 #> Permutation: free
@@ -381,23 +395,40 @@ ord <- metaMDS(varespec)
 #> 
 scores(fit, "vectors")
 #>                NMDS1      NMDS2
-#> N        -0.02883469 -0.5028223
-#> P         0.27281253  0.3455314
-#> K         0.32598275  0.2732335
-#> Ca        0.43969547  0.4674715
-#> Mg        0.41330987  0.5061844
-#> S         0.08008029  0.4108374
-#> Al       -0.63273148  0.3558013
-#> Fe       -0.62448384  0.2346992
-#> Mn        0.57765369 -0.4351830
-#> Zn        0.26769851  0.3409609
-#> Mo       -0.22293280  0.1060360
-#> Baresoil  0.46319165 -0.1903358
-#> Humdepth  0.67271731 -0.2597805
-#> pH       -0.31131128  0.3658875
+#> N        -0.02884083 -0.5028171
+#> P         0.27281653  0.3455379
+#> K         0.32598993  0.2732305
+#> Ca        0.43970283  0.4674643
+#> Mg        0.41331336  0.5061738
+#> S         0.08008293  0.4108341
+#> Al       -0.63272093  0.3558117
+#> Fe       -0.62446435  0.2347248
+#> Mn        0.57765762 -0.4351769
+#> Zn        0.26769796  0.3409634
+#> Mo       -0.22294016  0.1060302
+#> Baresoil  0.46318328 -0.1903590
+#> Humdepth  0.67271388 -0.2597952
+#> pH       -0.31130960  0.3658898
 plot(ord)
 plot(fit)
 plot(fit, p.max = 0.05, col = "red")
+
+## Interpretation of fitted arrow: assume linear trend surface, and
+## the arrow shows the direction of steepest increase, and fitted
+## values are found by projecting points onto the arrow
+plot(ord, type = "p")
+plot(envfit(ord ~ Al, varechem, permutations = 0))
+ordisurf(ord ~ Al, varechem, add = TRUE, knots = 1)
+#> 
+#> Family: gaussian 
+#> Link function: identity 
+#> 
+#> Formula:
+#> y ~ poly(x1, 1) + poly(x2, 1)
+#> Total model degrees of freedom 3 
+#> 
+#> REML score: 125.4219     
+title(main = "Interpretation of the arrow")
 
 ## Adding fitted arrows to CCA. We use "lc" scores, and hope
 ## that arrows are scaled similarly in cca and envfit plots
@@ -435,6 +466,30 @@ labels(fit)
 #> [1] "Moisture1" "Moisture2" "Moisture4" "Moisture5"
 #> 
 plot(ord)
-plot(fit, labels=list(factors = paste("M", c(1,2,4,5), sep = "")),
+plot(fit, labels=list(factors = paste0("M", c(1,2,4,5))),
    bg = rgb(1,1,0,0.5))
+
+## change names permanently
+names(fit) <- list(factors = paste0("M", c(1,2,4,5)))
+fit
+#> 
+#> ***VECTORS
+#> 
+#>          CA1       CA2     r2
+#> A1 -0.998160 -0.060614 0.3104
+#> 
+#> ***FACTORS:
+#> 
+#> Centroids:
+#>        CA1     CA2
+#> M1  0.7484  0.1423
+#> M2  0.4652  0.2156
+#> M4 -0.1827  0.7315
+#> M5 -1.1143 -0.5708
+#> 
+#> Goodness of fit:
+#>              r2
+#> Moisture 0.4113
+#> 
+#> 
 ```

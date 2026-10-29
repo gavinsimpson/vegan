@@ -18,7 +18,7 @@ summary(object, ...)
 plot(x, Xnames = x$tables, ...)
 # S3 method for class 'varpart234'
 plot(x, cutoff = 0, digits = 1, ...)
-showvarparts(parts, labels, bg = NULL, alpha = 63, Xnames,
+showvarparts(parts, labels, bg = NULL, alpha = 0.25, Xnames,
     id.size = 1.2,  ...)
 ```
 
@@ -93,7 +93,7 @@ showvarparts(parts, labels, bg = NULL, alpha = 63, Xnames,
 - permutations:
 
   If `chisquare = TRUE`, the adjusted \\R^2\\ is estimated by
-  permutations, and this paramater can be a list of control values for
+  permutations, and this parameter can be a list of control values for
   the permutations as returned by the function
   [`how`](https://rdrr.io/pkg/permute/man/how.html), or the number of
   permutations required, or a permutation matrix where each row gives
@@ -116,8 +116,7 @@ showvarparts(parts, labels, bg = NULL, alpha = 63, Xnames,
 
   Transparency of the fill colour. The argument takes precedence over
   possible transparency definitions of the colour. The value must be in
-  range \\0...255\\, and low values are more transparent. Transparency
-  is not available in all graphics devices or file formats.
+  range \[0, 1\], and low values are more transparent.
 
 - Xnames, id.size:
 
@@ -368,7 +367,7 @@ eigenvalues, and no negative eigenvalues are produced after Lingoes or
 Cailliez adjustment, which in effect add random variation to the
 dissimilarities.
 
-A simplified, fast version of RDA, CCA adn dbRDA are used (functions
+A simplified, fast version of RDA, CCA and dbRDA are used (functions
 `simpleRDA2`, `simpleCCA` and `simpleDBRDA`). The actual calculations
 are done in functions `varpart2` to `varpart4`, but these are not
 intended to be called directly by the user.

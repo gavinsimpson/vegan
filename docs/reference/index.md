@@ -150,6 +150,7 @@
   [`envfit(`*`<formula>`*`)`](https://vegandevs.github.io/vegan/reference/envfit.md)
   [`plot(`*`<envfit>`*`)`](https://vegandevs.github.io/vegan/reference/envfit.md)
   [`scores(`*`<envfit>`*`)`](https://vegandevs.github.io/vegan/reference/envfit.md)
+  [`` `names<-`( ``*`<envfit>`*`)`](https://vegandevs.github.io/vegan/reference/envfit.md)
   [`vectorfit()`](https://vegandevs.github.io/vegan/reference/envfit.md)
   [`factorfit()`](https://vegandevs.github.io/vegan/reference/envfit.md)
   : Fits an Environmental Vector or Factor onto an Ordination
@@ -182,14 +183,15 @@
   Scaling
 - [`indpower()`](https://vegandevs.github.io/vegan/reference/indpower.md)
   : Indicator Power of Species
-- [`hatvalues(`*`<cca>`*`)`](https://vegandevs.github.io/vegan/reference/influence.cca.md)
+- [`influence(`*`<cca>`*`)`](https://vegandevs.github.io/vegan/reference/influence.cca.md)
+  [`hatvalues(`*`<cca>`*`)`](https://vegandevs.github.io/vegan/reference/influence.cca.md)
   [`rstandard(`*`<cca>`*`)`](https://vegandevs.github.io/vegan/reference/influence.cca.md)
   [`rstudent(`*`<cca>`*`)`](https://vegandevs.github.io/vegan/reference/influence.cca.md)
   [`cooks.distance(`*`<cca>`*`)`](https://vegandevs.github.io/vegan/reference/influence.cca.md)
-  [`influence(`*`<cca>`*`)`](https://vegandevs.github.io/vegan/reference/influence.cca.md)
   [`sigma(`*`<cca>`*`)`](https://vegandevs.github.io/vegan/reference/influence.cca.md)
-  [`vcov(`*`<cca>`*`)`](https://vegandevs.github.io/vegan/reference/influence.cca.md)
   [`SSD(`*`<cca>`*`)`](https://vegandevs.github.io/vegan/reference/influence.cca.md)
+  [`estVar(`*`<cca>`*`)`](https://vegandevs.github.io/vegan/reference/influence.cca.md)
+  [`vcov(`*`<cca>`*`)`](https://vegandevs.github.io/vegan/reference/influence.cca.md)
   [`qr(`*`<cca>`*`)`](https://vegandevs.github.io/vegan/reference/influence.cca.md)
   [`df.residual(`*`<cca>`*`)`](https://vegandevs.github.io/vegan/reference/influence.cca.md)
   : Linear Model Diagnostics for Constrained Ordination
@@ -466,7 +468,7 @@
   [`taxa2dist()`](https://vegandevs.github.io/vegan/reference/taxondive.md)
   : Indices of Taxonomic Diversity and Distinctness
 - [`tolerance()`](https://vegandevs.github.io/vegan/reference/tolerance.md)
-  : Species tolerances and sample heterogeneities
+  : Species tolerances and sample heterogeneities.
 - [`treedive()`](https://vegandevs.github.io/vegan/reference/treedive.md)
   [`treeheight()`](https://vegandevs.github.io/vegan/reference/treedive.md)
   [`treedist()`](https://vegandevs.github.io/vegan/reference/treedive.md)

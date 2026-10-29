@@ -219,7 +219,7 @@ because people use same names for different indices.
 #### I cannot get repeated solutions in `metaMDS`
 
 The first (try 0) run of `metaMDS` starts from the metric scaling
-solution and is usually good, and most sofware only return that
+solution and is usually good, and most software only return that
 solution. However, `metaMDS` tries to see if that standard solution can
 be repeated, or improved and the improved solution still repeated. In
 all cases, it will return the best solution found, and there is no
@@ -233,19 +233,19 @@ help section “Results Could Not Be Repeated” and try harder.
 #### I get zero stress but no repeated solutions in `metaMDS`
 
 Most common reason is that you have too few observations for your NMDS.
-For $n$ observations (points) and $k$ dimensions you need to estimate
-$nk$ parameters (ordination scores) using $n(n - 1)/2$ dissimilarities.
-For $k$ dimensions you must have $n > 2k + 1$, or for two dimensions at
-least six points. In some degenerate situations you may need even a
-larger number of points. If you have a lower number of points, you can
-find an undefined number of perfect (stress is zero) but different
-solutions. Conventional wisdom due to Kruskal is that you should have
-$n > 4k + 1$ points for $k$ dimensions. A typical symptom of
-insufficient data is that you have (nearly) zero stress but no repeated
-solutions. In those cases you should reduce the number of dimensions
-($k$) and with very small data sets you should not use `NMDS`, but rely
-on metric methods (`pco` and `wcmdscale` in **vegan**, `cmdscale` in
-base **R**).
+For $`n`$ observations (points) and $`k`$ dimensions you need to
+estimate $`nk`$ parameters (ordination scores) using $`n(n-1)/2`$
+dissimilarities. For $`k`$ dimensions you must have $`n > 2k + 1`$, or
+for two dimensions at least six points. In some degenerate situations
+you may need even a larger number of points. If you have a lower number
+of points, you can find an undefined number of perfect (stress is zero)
+but different solutions. Conventional wisdom due to Kruskal is that you
+should have $`n > 4k + 1`$ points for $`k`$ dimensions. A typical
+symptom of insufficient data is that you have (nearly) zero stress but
+no repeated solutions. In those cases you should reduce the number of
+dimensions ($`k`$) and with very small data sets you should not use
+`NMDS`, but rely on metric methods (`pco` and `wcmdscale` in **vegan**,
+`cmdscale` in base **R**).
 
 ------------------------------------------------------------------------
 
@@ -260,6 +260,34 @@ Euclidean ordination space. You can inspect this non-linear step
 function using function `stressplot` in **vegan**. Because the
 ordination scores are strictly Euclidean, it is correct to use **vegan**
 functions `envfit` and `ordisurf` with NMDS results.
+
+------------------------------------------------------------------------
+
+#### Why ordiellipses are much smaller than ggplot2 ellipses?
+
+**vegan** `ordiellipse` and **ggplot2** `stat_ellipse` use nearly
+identical methods, but there are three differences. In order of
+importance: (1) Greatest difference is that they are different ellipses.
+**Vegan** defaults to show standard deviation ellipses, but **ggplot2**
+shows data ellipses. Data ellipses are intended to enclose a given
+proportion of points. `ordiellipse` can also show data ellipses with its
+`conf` argument. Setting `ordiellipse(..., kind="sd", conf=0.95)` is
+similar to default **ggplot2** ellipse, and setting `level=0.39` in
+`stat_ellipse` will give a reasonable good approximation of SD ellipses.
+(2) **Vegan** uses standard
+[`stats::cov.wt`](https://rdrr.io/r/stats/cov.wt.html) function to find
+the covariance matrices, whereas **ggplot2** defaults to robust
+covariances with
+[`MASS::cov.trob`](https://rdrr.io/pkg/MASS/man/cov.trob.html) (which is
+not (yet?) implemented in **vegan**). Setting `type="norm"` in
+`ggplot2::stat_ellipse` will use the same covariance matrix as
+`ordiellipse`. The use of robust covariances will influence both the
+shape and location of ellipses. (3) `ordiellipse` uses asymptotic
+confidence limits based on Chi-squared distribution whereas
+`stat_ellipse` uses *F*-statistic based on bivariate Normal distribution
+which takes into account group sizes and gives wider radius for smaller
+groups. The differences are usually small, and large groups are very
+similar.
 
 ------------------------------------------------------------------------
 

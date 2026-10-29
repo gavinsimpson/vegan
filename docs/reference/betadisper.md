@@ -184,7 +184,7 @@ betadistances(x, ...)
 
   numeric; for the `print` method, sets the number of digits to use (as
   per [`print.default`](https://rdrr.io/r/base/print.default.html)) and
-  the maximum number of axes to display eigenvalues for, repsectively.
+  the maximum number of axes to display eigenvalues for, respectively.
 
 - ...:
 
@@ -389,6 +389,7 @@ mod <- betadisper(dis, groups)
 mod
 #> 
 #>  Homogeneity of multivariate dispersions
+#>  squared Bray distance
 #> 
 #> Call: betadisper(d = dis, group = groups)
 #> 
@@ -424,7 +425,7 @@ permutest(mod, pairwise = TRUE, permutations = 99)
 #> 
 #> Response: Distances
 #>           Df  Sum Sq  Mean Sq      F N.Perm Pr(>F)  
-#> Groups     1 0.07931 0.079306 4.6156     99   0.07 .
+#> Groups     1 0.07931 0.079306 4.6156     99   0.09 .
 #> Residuals 22 0.37801 0.017182                       
 #> ---
 #> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
@@ -503,27 +504,27 @@ boxplot(mod)
 scrs <- scores(mod)
 str(scrs)
 #> List of 2
-#>  $ sites    : num [1:24, 1:2] -0.0946 0.3125 0.3511 0.3291 0.1926 ...
+#>  $ sites    : num [1:24, 1:2] 0.0946 -0.3125 -0.3511 -0.3291 -0.1926 ...
 #>   ..- attr(*, "dimnames")=List of 2
 #>   .. ..$ : chr [1:24] "18" "15" "24" "27" ...
 #>   .. ..$ : chr [1:2] "PCoA1" "PCoA2"
-#>  $ centroids: num [1:2, 1:2] 0.1455 -0.2786 0.0758 -0.2111
+#>  $ centroids: num [1:2, 1:2] -0.1455 0.2786 0.0758 -0.2111
 #>   ..- attr(*, "dimnames")=List of 2
 #>   .. ..$ : chr [1:2] "grazed" "ungrazed"
 #>   .. ..$ : chr [1:2] "PCoA1" "PCoA2"
 head(scores(mod, 1:4, display = "sites"))
 #>          PCoA1       PCoA2        PCoA3        PCoA4
-#> 18 -0.09459373  0.15914576  0.074400844 -0.202466025
-#> 15  0.31248809  0.10032751 -0.062243360  0.110844864
-#> 24  0.35106507 -0.05954096 -0.038079447  0.095060928
-#> 27  0.32914546 -0.17019348  0.231623720  0.019110623
-#> 23  0.19259443 -0.01459250 -0.005679372 -0.209718312
-#> 19  0.06794575 -0.14501690 -0.085645653  0.002431355
+#> 18  0.09459373  0.15914576  0.074400844 -0.202466025
+#> 15 -0.31248809  0.10032751 -0.062243360  0.110844864
+#> 24 -0.35106507 -0.05954096 -0.038079447  0.095060928
+#> 27 -0.32914546 -0.17019348  0.231623720  0.019110623
+#> 23 -0.19259443 -0.01459250 -0.005679372 -0.209718312
+#> 19 -0.06794575 -0.14501690 -0.085645653  0.002431355
 # group centroids/medians 
 scores(mod, 1:4, display = "centroids")
 #>               PCoA1       PCoA2       PCoA3      PCoA4
-#> grazed    0.1455200  0.07584572 -0.01366220 -0.0178990
-#> ungrazed -0.2786095 -0.21114993 -0.03475586  0.0220129
+#> grazed   -0.1455200  0.07584572 -0.01366220 -0.0178990
+#> ungrazed  0.2786095 -0.21114993 -0.03475586  0.0220129
 # eigenvalues from the underlying principal coordinates analysis
 eigenvals(mod) 
 #>      PCoA1      PCoA2      PCoA3      PCoA4      PCoA5      PCoA6      PCoA7 
@@ -539,6 +540,7 @@ eigenvals(mod)
 (mod3B <- betadisper(dis, groups, type = "median", bias.adjust=TRUE))
 #> 
 #>  Homogeneity of multivariate dispersions
+#>  squared Bray distance
 #> 
 #> Call: betadisper(d = dis, group = groups, type = "median", bias.adjust
 #> = TRUE)
@@ -571,7 +573,7 @@ permutest(mod3B, permutations = 99)
 #> 
 #> Response: Distances
 #>           Df  Sum Sq  Mean Sq      F N.Perm Pr(>F)  
-#> Groups     1 0.07193 0.071927 3.7826     99   0.05 *
+#> Groups     1 0.07193 0.071927 3.7826     99   0.06 .
 #> Residuals 22 0.41834 0.019015                       
 #> ---
 #> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
@@ -581,6 +583,7 @@ group <- factor(rep("grazed", NROW(varespec)))
 (tmp <- betadisper(dis, group, type = "median"))
 #> 
 #>  Homogeneity of multivariate dispersions
+#>  squared Bray distance
 #> 
 #> Call: betadisper(d = dis, group = group, type = "median")
 #> 
@@ -598,6 +601,7 @@ group <- factor(rep("grazed", NROW(varespec)))
 (tmp <- betadisper(dis, group, type = "centroid"))
 #> 
 #>  Homogeneity of multivariate dispersions
+#>  squared Bray distance
 #> 
 #> Call: betadisper(d = dis, group = group, type = "centroid")
 #> 
@@ -623,6 +627,7 @@ mod2 <- betadisper(dis, groups) ## messages
 mod2
 #> 
 #>  Homogeneity of multivariate dispersions
+#>  squared Bray distance
 #> 
 #> Call: betadisper(d = dis, group = groups)
 #> 
@@ -645,7 +650,7 @@ permutest(mod2, permutations = 99)
 #> 
 #> Response: Distances
 #>           Df   Sum Sq  Mean Sq      F N.Perm Pr(>F)
-#> Groups     1 0.039979 0.039979 2.4237     99   0.16
+#> Groups     1 0.039979 0.039979 2.4237     99   0.18
 #> Residuals 18 0.296910 0.016495                     
 anova(mod2)
 #> Analysis of Variance Table
@@ -668,6 +673,7 @@ mod3 <- betadisper(dis, groups, type = "centroid")
 mod3
 #> 
 #>  Homogeneity of multivariate dispersions
+#>  squared Bray distance
 #> 
 #> Call: betadisper(d = dis, group = groups, type = "centroid")
 #> 
@@ -689,9 +695,11 @@ permutest(mod3, permutations = 99)
 #> Number of permutations: 99
 #> 
 #> Response: Distances
-#>           Df   Sum Sq  Mean Sq      F N.Perm Pr(>F)
-#> Groups     1 0.033468 0.033468 3.1749     99   0.12
-#> Residuals 18 0.189749 0.010542                     
+#>           Df   Sum Sq  Mean Sq      F N.Perm Pr(>F)  
+#> Groups     1 0.033468 0.033468 3.1749     99   0.09 .
+#> Residuals 18 0.189749 0.010542                       
+#> ---
+#> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 anova(mod3)
 #> Analysis of Variance Table
 #> 
