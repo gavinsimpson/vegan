@@ -16,10 +16,10 @@ and \\P\\-value.
 ``` r
 ordistep(object, scope, direction = c("both", "backward", "forward"),
   Pin = 0.05, Pout = 0.1, permutations = how(nperm = 199), steps = 50,
-  trace = TRUE, test = c("permutation", "F"), ...)
+  trace = TRUE, test = c("permutation", "parametric"), ...)
 ordiR2step(object, scope, Pin = 0.05, R2scope = TRUE,
   permutations = how(nperm = 499), trace = TRUE, R2permutations = 1000,
-  test = c("permutation", "F"),  ...)
+  test = c("permutation", "parametric"),  ...)
 ```
 
 ## Arguments
@@ -63,9 +63,10 @@ ordiR2step(object, scope, Pin = 0.05, R2scope = TRUE,
 - permutations:
 
   a list of control values for the permutations as returned by the
-  function [`how`](https://rdrr.io/pkg/permute/man/how.html), or the
-  number of permutations required, or a permutation matrix where each
-  row gives the permuted indices. This is passed to
+  function
+  [`how`](https://gavinsimpson.github.io/permute/reference/how.html), or
+  the number of permutations required, or a permutation matrix where
+  each row gives the permuted indices. This is passed to
   [`anova.cca`](https://vegandevs.github.io/vegan/reference/anova.cca.md):
   see there for details.
 
@@ -86,9 +87,9 @@ ordiR2step(object, scope, Pin = 0.05, R2scope = TRUE,
 
 - test:
 
-  Use `"permutation"` test or parametric `"F"` test in
+  Use a `"permutation"` or `"parametric"` test in
   [`anova.cca`](https://vegandevs.github.io/vegan/reference/anova.cca.md).
-  `"F"` can be only used with
+  Parametric \\F\\-tests can only be used with
   [`rda`](https://vegandevs.github.io/vegan/reference/cca.md) models.
 
 - ...:

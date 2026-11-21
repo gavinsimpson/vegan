@@ -18,6 +18,16 @@
 
 ### New Features
 
+- `adonis2`, `anova.cca` and `permutest.cca` can use the modified
+  pseudo-*F* statistic of Anderson et al. (2017) for omnibus tests that
+  allow heterogeneous within-group dispersions, selected with
+  `permustat = "modified-F"`. The first implementation supports one-way
+  and saturated fixed-factor cell models fitted with `adonis2`, `dbrda`
+  or `rda`; term-specific mixed and random-factor tests require
+  separately specified error terms and permutation schemes. The
+  compressed `norwegianShelf` data reproduce the paper’s Norwegian
+  continental-shelf example and provide a published numerical benchmark.
+
 - `metaMDS` can use any MDS function as an `engine` if the function
   takes as input dissimilarities, initial configuration and number of
   axes, and returns a list with elements stress and points for final
@@ -29,20 +39,24 @@
   `smacof::mds`. The default engine is still
   [`vegan::monoMDS`](https://vegandevs.github.io/vegan/reference/monoMDS.md),
   and the user experience with this default choice is unchanged.
+  `isoMDS` engine no longer has special handling in `metaMDS`, but
+  support functions `goodness` and `stressplot` still have special
+  methods for `isoMDS` when it is used as a `metaMDS` engine.
 
 - `adonis2` can have `Condition` in formula allowing similar analysis of
   partial models as in `dbrda`.
 
-- `anova.cca` calculates parametric *F*-test as an alternative to
-  permutation test. The parametric *F*-test is similar as the
-  “spherical” test in `anova.mlm` for multivariate linear models.
-  Parametric tests and permutation tests have been consistent in
-  preliminary comparisons for `rda`. Tests were inconsistent with `cca`,
-  and parametric test is only enabled for `rda`, and it cannot be
-  calculated for distance-based ordination (`dbrda`, `capscale`).
+- `anova.cca` calculates a parametric *F*-test with
+  `test = "parametric"` as an alternative to a permutation test. The
+  parametric *F*-test is similar as the “spherical” test in `anova.mlm`
+  for multivariate linear models. Parametric tests and permutation tests
+  have been consistent in preliminary comparisons for `rda`. Tests were
+  inconsistent with `cca`, and parametric test is only enabled for
+  `rda`, and it cannot be calculated for distance-based ordination
+  (`dbrda`, `capscale`).
 
-  `add1`, `drop1`, `ordistep`and `ordiR2step` can use parametric
-  *F*-tests with `rda` models.
+  `add1`, `drop1`, `ordistep` and `ordiR2step` can use parametric
+  *F*-tests with `rda` models using `test = "parametric"`.
   [`stats::step`](https://rdrr.io/r/stats/step.html) was able to use
   them automatically.
 
@@ -78,40 +92,11 @@
   [\#752](https://github.com/vegandevs/vegan/issues/752). Earlier it was
   possible to use these only *via* `hiersimu`.
 
-- `decorana` uses stricter convergence criteria similarly as most other
-  **vegan** functions. Usually effects can be seen only in the last
-  decimals.
-
-- `qqnorm.permustats` gained argument `which` to select the displayed
-  statistic. Earlier it refused to handle `permustats` results with
-  several statistics. The function also gained argument `x` for user
-  supplied theoretical quantiles. With this it can show permutation
-  values against other reference distributions than standard Normal.
-
-- `SSD.cca` and `vcov.cca` can return `type = "response"`. Earlier they
-  only knew `type = "canoco"`. Added `estVar.cca`.
-
 ### Bug Fixes
 
-- `anova` for `prc` result failed with `by` argument if `prc` was called
-  with expressions instead of plain names, for instance with
-  `prc(t(spe), md$treatment, md$time)`. Issue
-  [\#797](https://github.com/vegandevs/vegan/issues/797), PR
-  [\#798](https://github.com/vegandevs/vegan/pull/798).
-
-- `anova.cca` and `permutest.cca` failed in several cases with
-  `permutations = 0`.
-
-- `anova.cca(..., by = "axis")` inflated *F*-values after first axis.
-  Similar inflation was used both in the test statistic and permutation,
-  and *P*-values are unchanged.
-
-- `anova.cca(<list of models>)` output table did not adopt headers to
-  `rda` or distance-based methods. Issue
-  [\#801](https://github.com/vegandevs/vegan/issues/801).
-
-- `adonis2` did not apply correctly Lingoes and Caillez adjustments of
-  input dissimilarities.
+- User-supplied permutation matrices now carry a complete permutation
+  control object, retaining compatibility with both released and
+  development versions of **permute**.
 
 ### Deprecated, Defunct and Resurrected
 
@@ -136,6 +121,85 @@
   `renyiaccum` (also handling `tsallisaccum`). The base `plot` functions
   are simpler, but the original **lattice** implementations can be
   reproduced with functions in the CRAN package **ggvegan**.
+
+## vegan 2.7-8
+
+CRAN release: 2026-11-18
+
+### Maintenance
+
+- Fixes issues in CRAN checks: PR
+  [\#796](https://github.com/vegandevs/vegan/pull/796) and issue
+  [\#808](https://github.com/vegandevs/vegan/issues/808).
+
+### New Features
+
+- `anova.cca`: when analysing differencens of several models, function
+  will now order the models so that they are nested.
+
+- `decorana` uses stricter convergence and is now similar to other
+  ordination methods in **vegan**. For instance, orthogonal
+  correspondence analysis (reciprocal averaging) results are similar as
+  with `ca` and `cca`.
+
+- `decostand` Aitchison or log-ratio methods were updated. The
+  documentation and code were made more consistent. Robust centred log
+  ratio (`"rclr"`) can now use imputation for complete matrix or only
+  for original zeros, and the optional estimation of rank of imputation
+  was fixed. The imputation function `optspace` no longer double-centres
+  result matrix allowing more general use outside `decostand`, but
+  double-centring is done within `decostand` keeping the behaviour
+  unchanged in `decostand` and
+  `vegdist(..., method = "robust.aitchison")`. Back-transformation
+  (`decobackstand`) was enabled for additive log-ratio (`"alr"`). Issue
+  [\#806](https://github.com/vegandevs/vegan/issues/806).
+
+- `CCoRA`: the right matrix `X` can be a data frame with factors.
+
+- `qqnorm` and `density` functions for `permustats` results gained
+  argument `which` to select the displayed statistic. Earlier they
+  refused to handle results with several statistics. `qqnorm` function
+  also gained argument `x` for user supplied theoretical quantiles. With
+  this it can show permutation values against other reference
+  distributions than standard Normal.
+
+- `SSD.cca` and `vcov.cca` can return `type = "response"`. Earlier they
+  only knew `type = "canoco"`. Added `estVar.cca`.
+
+### Bug Fixes
+
+- `adonis2`: additive constant (Lingoes or Cailliez) was wrongly
+  implemented.
+
+- `procrustes` guards against negative residual sums of squares caused
+  by rounding in perfect fits, preventing warnings and `NaN` root mean
+  squared errors in `summary`.
+
+- `anova` for `prc` result failed with `by` argument if `prc` was called
+  with expressions instead of plain names, for instance with
+  `prc(t(spe), md$treatment, md$time)`. Issue
+  [\#797](https://github.com/vegandevs/vegan/issues/797), PR
+  [\#798](https://github.com/vegandevs/vegan/pull/798).
+
+- `anova.cca` and `permutest.cca` failed in several cases with
+  `permutations = 0`.
+
+- `anova.cca(..., by = "axis")` inflated *F*-values after first axis.
+  Similar inflation was used both in the test statistic and permutation,
+  and *P*-values are unchanged.
+
+- `anova.cca(<list of models>)` output table did not adopt headers to
+  `rda` or distance-based methods. Issue
+  [\#801](https://github.com/vegandevs/vegan/issues/801).
+
+- `permustats` support methods `c`, `boxplot(..., scale=TRUE)`,
+  `density` and `qqnorm` failed when permuted values of the single
+  statistic were given as a vector instead of a one-column matrix. Now
+  all `permustats` methods return permuted values as a matrix. Issue
+  [\#803](https://github.com/vegandevs/vegan/issues/803).
+
+- `metaMDSredist` failed (but it is not needed with the modern `monoMDS`
+  engine).
 
 ## vegan 2.7-6
 
